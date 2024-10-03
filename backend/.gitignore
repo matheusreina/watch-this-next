@@ -13,6 +13,10 @@ target/
 .springBeans
 .sts4-cache
 
+# Arquivos de configuração sensíveis
+.env
+application.properties
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
