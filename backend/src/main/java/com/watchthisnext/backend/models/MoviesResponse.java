@@ -43,7 +43,7 @@ public class MoviesResponse {
         private String releaseDate;
 
         @JsonProperty("vote_average")
-        private String voteAverage;
+        private float voteAverage;
 
         // Getters & Setters
         public String getId() {
@@ -88,11 +88,11 @@ public class MoviesResponse {
         public void setReleaseDate(String releaseDate) {
             this.releaseDate = releaseDate;
         }
-        public String getVoteAverage() {
+        public float getVoteAverage() {
             return voteAverage;
         }
-        public void setVoteAverage(String voteAverage) {
-            this.voteAverage = voteAverage;
+        public void setVoteAverage(float voteAverage) {
+            this.voteAverage = Math.round(voteAverage);
         }
     }
 }

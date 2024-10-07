@@ -46,7 +46,7 @@ public class TvResponse {
         private String firstAirDate;
 
         @JsonProperty("vote_average")
-        private String voteAverage;
+        private float voteAverage;
 
         // Getters & Setters
         public String getId() {
@@ -97,11 +97,11 @@ public class TvResponse {
         public void setFirstAirDate(String firstAirDate) {
             this.firstAirDate = firstAirDate;
         }
-        public String getVoteAverage() {
+        public float getVoteAverage() {
             return voteAverage;
         }
-        public void setVoteAverage(String voteAverage) {
-            this.voteAverage = voteAverage;
+        public void setVoteAverage(float voteAverage) {
+            this.voteAverage = Math.round(voteAverage);
         }
     }
 }

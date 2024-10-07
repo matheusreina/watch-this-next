@@ -1,6 +1,7 @@
 package com.watchthisnext.backend.services;
 
 import com.watchthisnext.backend.models.MoviesResponse;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -8,12 +9,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class MovieService {
-    @Value("${api.key}")
-    private String API_KEY;
-
-    @Value("${api.authToken}")
-    private String API_TOKEN;
-
+    Dotenv dotenv = Dotenv.configure().load();
+    private final String API_KEY = dotenv.get("API_KEY");
+    private final String API_TOKEN = dotenv.get("API_TOKEN");
     private final String BASE_URL = "https://api.themoviedb.org/3";
 
     private final RestTemplate restTemplate;
