@@ -1,20 +1,26 @@
 package com.watchthisnext.backend.controllers;
 
 import com.watchthisnext.backend.models.MoviesResponse;
-import com.watchthisnext.backend.services.AppService;
+import com.watchthisnext.backend.services.MovieService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MoviesController {
-    private final AppService appService;
+    private final MovieService movieService;
 
-    public MoviesController(AppService appService) {
-        this.appService = appService;
+    public MoviesController(MovieService movieService) {
+        this.movieService = movieService;
     }
 
-    @GetMapping("/movie/popular")
-    public MoviesResponse getPopularMovies() {
-        return appService.getPopularMovies();
+    @GetMapping("{language}/movie/popular")
+    public MoviesResponse getPopularMovies(@PathVariable String language) {
+        return movieService.getPopularMovies(language);
+    }
+
+    @GetMapping("{language}/movie/top_rated")
+    public MoviesResponse getTopRatedMovies(@PathVariable String language) {
+        return movieService.getTopRatedMovies(language);
     }
 }

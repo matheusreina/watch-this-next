@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
-public class AppService {
+public class MovieService {
     @Value("${api.key}")
     private String API_KEY;
 
@@ -18,13 +18,23 @@ public class AppService {
 
     private final RestTemplate restTemplate;
 
-    public AppService(RestTemplate restTemplate) {
+    public MovieService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public MoviesResponse getPopularMovies () {
+    public MoviesResponse getPopularMovies (String language) {
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/popular")
-                                                .queryParam("api_key", API_KEY).toUriString();
+                                                .queryParam("api_key", API_KEY)
+                                                .queryParam("language", language)
+                                                .toUriString();
+        return restTemplate.getForObject(url, MoviesResponse.class);
+    }
+
+    public MoviesResponse getTopRatedMovies (String language) {
+        String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/top_rated")
+                .queryParam("api_key", API_KEY)
+                .queryParam("language", language)
+                .toUriString();
         return restTemplate.getForObject(url, MoviesResponse.class);
     }
 
