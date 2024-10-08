@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 # Arquivos de configuração sensíveis
-.env.api
+.env
 application.properties
 
 ### IntelliJ IDEA ###

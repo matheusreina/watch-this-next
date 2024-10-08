@@ -1,8 +1,8 @@
 package com.watchthisnext.backend.services;
 
+import com.watchthisnext.backend.models.MovieDetailsResponse;
 import com.watchthisnext.backend.models.MoviesResponse;
 import io.github.cdimascio.dotenv.Dotenv;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -34,6 +34,14 @@ public class MovieService {
                 .queryParam("language", language)
                 .toUriString();
         return restTemplate.getForObject(url, MoviesResponse.class);
+    }
+
+    public MovieDetailsResponse getMovieDetails(String language, String movieId) {
+        String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/" + movieId)
+                .queryParam("api_key", API_KEY)
+                .queryParam("language", language)
+                .toUriString();
+        return restTemplate.getForObject(url, MovieDetailsResponse.class);
     }
 
 }

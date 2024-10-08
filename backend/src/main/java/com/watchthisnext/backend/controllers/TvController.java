@@ -1,5 +1,6 @@
 package com.watchthisnext.backend.controllers;
 
+import com.watchthisnext.backend.models.TvDetailsResponse;
 import com.watchthisnext.backend.models.TvResponse;
 import com.watchthisnext.backend.services.MovieService;
 import com.watchthisnext.backend.services.TvService;
@@ -23,5 +24,10 @@ public class TvController {
     @GetMapping("{language}/tv/top_rated")
     public TvResponse getTopRatedTvs (@PathVariable String language) {
         return tvService.getTopRatedTvs(language);
+    }
+
+    @GetMapping("{language}/tv/details/{tvId}")
+    public TvDetailsResponse getTvDetails(@PathVariable String language, @PathVariable String tvId) {
+        return tvService.getTvDetails(language, tvId);
     }
 }

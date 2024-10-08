@@ -1,8 +1,8 @@
 package com.watchthisnext.backend.services;
 
+import com.watchthisnext.backend.models.TvDetailsResponse;
 import com.watchthisnext.backend.models.TvResponse;
 import io.github.cdimascio.dotenv.Dotenv;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -29,10 +29,18 @@ public class TvService {
     }
 
     public TvResponse getTopRatedTvs(String language) {
-        String url =UriComponentsBuilder.fromHttpUrl(BASE_URL + "tv/top_rated")
+        String url =UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/top_rated")
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", language)
                 .toUriString();
         return restTemplate.getForObject(url, TvResponse.class);
+    }
+
+    public TvDetailsResponse getTvDetails(String language, String tvId) {
+        String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId)
+                .queryParam("api_key", API_KEY)
+                .queryParam("language", language)
+                .toUriString();
+        return restTemplate.getForObject(url, TvDetailsResponse.class);
     }
 }

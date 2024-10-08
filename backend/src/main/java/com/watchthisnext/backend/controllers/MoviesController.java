@@ -1,5 +1,6 @@
 package com.watchthisnext.backend.controllers;
 
+import com.watchthisnext.backend.models.MovieDetailsResponse;
 import com.watchthisnext.backend.models.MoviesResponse;
 import com.watchthisnext.backend.services.MovieService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,5 +23,10 @@ public class MoviesController {
     @GetMapping("{language}/movie/top_rated")
     public MoviesResponse getTopRatedMovies(@PathVariable String language) {
         return movieService.getTopRatedMovies(language);
+    }
+
+    @GetMapping("{language}/movie/details/{movieId}")
+    public MovieDetailsResponse getMovieDetails(@PathVariable String language, @PathVariable String movieId) {
+        return movieService.getMovieDetails(language, movieId);
     }
 }
