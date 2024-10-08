@@ -22,9 +22,9 @@ public class TvService {
 
     public TvResponse getPopularTvs(String language) {
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/popular")
-                                            .queryParam("api_key", API_KEY)
-                                            .queryParam("language", language)
-                                            .toUriString();
+                .queryParam("api_key", API_KEY)
+                .queryParam("language", language)
+                .toUriString();
         return restTemplate.getForObject(url, TvResponse.class);
     }
 
@@ -40,6 +40,7 @@ public class TvService {
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId)
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", language)
+                .queryParam("append_to_response", "videos")
                 .toUriString();
         return restTemplate.getForObject(url, TvDetailsResponse.class);
     }

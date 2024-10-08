@@ -3,12 +3,15 @@ package com.watchthisnext.backend.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TvDetailsResponse {
     private String id;
     private String name;
     private String status;
     private String overview;
+    private List<Video> videos;
 
     @JsonProperty("backdrop_path")
     private String backdropPath;
@@ -17,7 +20,7 @@ public class TvDetailsResponse {
     private String posterPath;
 
     @JsonProperty("vote_average")
-    private float voteAverage;
+    private double voteAverage;
 
     @JsonProperty("first_air_date")
     private String firstAirDate;
@@ -66,6 +69,12 @@ public class TvDetailsResponse {
     public void setOverview(String overview) {
         this.overview = overview;
     }
+    public List<Video> getVideos() {
+        return videos;
+    }
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
+    }
     public String getBackdropPath() {
         return backdropPath;
     }
@@ -78,11 +87,11 @@ public class TvDetailsResponse {
     public void setPosterPath(String posterPath) {
         this.posterPath = "https://image.tmdb.org/t/p/w500" + posterPath;
     }
-    public float getVoteAverage() {
+    public double getVoteAverage() {
         return voteAverage;
     }
-    public void setVoteAverage(float voteAverage) {
-        this.voteAverage = (float) (Math.round(voteAverage * 10.0)/ 10.0);
+    public void setVoteAverage(double voteAverage) {
+        this.voteAverage = (float) ((Math.round((voteAverage/2) * 10.0)/10.0));
     }
     public String getFirstAirDate() {
         return firstAirDate;
@@ -132,5 +141,70 @@ public class TvDetailsResponse {
     public void setProductionCountries(Object[] productionCountries) {
         this.productionCountries = productionCountries;
     }
+
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Video {
+        private List<VideoResults> results;
+
+        //G&S
+        public List<VideoResults> getResults() {
+            return results;
+        }
+        public void setResults(List<VideoResults> results) {
+            this.results = results;
+        }
+
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class VideoResults {
+            private String name;
+            private String key;
+            private String site;
+            private String type;
+            private boolean official;
+
+            @JsonProperty("published_at")
+            private String publishedAt;
+
+            //G&S
+            public String getName() {
+                return name;
+            }
+            public void setName(String name) {
+                this.name = name;
+            }
+            public String getKey() {
+                return key;
+            }
+            public void setKey(String key) {
+                this.key = "https://www.youtube.com/watch?v=" + key;
+            }
+            public String getSite() {
+                return site;
+            }
+            public void setSite(String site) {
+                this.site = site;
+            }
+            public String getType() {
+                return type;
+            }
+            public void setType(String type) {
+                this.type = type;
+            }
+            public boolean isOfficial() {
+                return official;
+            }
+            public void setOfficial(boolean official) {
+                this.official = official;
+            }
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+        }
+    }
+
 }
 

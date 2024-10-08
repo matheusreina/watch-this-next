@@ -30,6 +30,7 @@ public class TvResponse {
         private String name;
         private String overview;
 
+
         @JsonProperty("origin_country")
         private String[] originCountry;
 
@@ -46,7 +47,7 @@ public class TvResponse {
         private String firstAirDate;
 
         @JsonProperty("vote_average")
-        private float voteAverage;
+        private double voteAverage;
 
         // Getters & Setters
         public String getId() {
@@ -67,6 +68,7 @@ public class TvResponse {
         public void setOverview(String overview) {
             this.overview = overview;
         }
+
         public String[] getOriginCountry() {
             return originCountry;
         }
@@ -97,11 +99,12 @@ public class TvResponse {
         public void setFirstAirDate(String firstAirDate) {
             this.firstAirDate = firstAirDate;
         }
-        public float getVoteAverage() {
+        public double getVoteAverage() {
             return voteAverage;
         }
-        public void setVoteAverage(float voteAverage) {
-            this.voteAverage = Math.round(voteAverage);
+        public void setVoteAverage(double voteAverage) {
+            this.voteAverage = ((Math.round((voteAverage/2) * 10.0)/10.0));
         }
+
     }
 }
