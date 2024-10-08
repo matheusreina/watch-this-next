@@ -6,13 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TvDetailsResponse {
     private String id;
-    private String title;
+    private String name;
     private String status;
     private String overview;
-    private String runtime;
-
-    @JsonProperty("imdb_id")
-    private String imdbId;
 
     @JsonProperty("backdrop_path")
     private String backdropPath;
@@ -23,8 +19,8 @@ public class TvDetailsResponse {
     @JsonProperty("vote_average")
     private float voteAverage;
 
-    @JsonProperty("release_date")
-    private String releaseDate;
+    @JsonProperty("first_air_date")
+    private String firstAirDate;
 
     private Object[] genres;
 
@@ -33,6 +29,14 @@ public class TvDetailsResponse {
 
     @JsonProperty("number_of_seasons")
     private String numberOfSeasons;
+
+    @JsonProperty("in_production")
+    private String inProduction;
+
+    @JsonProperty("next_episode_to_air")
+    private String nextEpisodeToAir;
+
+    private Object[] seasons;
 
     @JsonProperty("production_countries")
     private Object[] productionCountries;
@@ -44,11 +48,11 @@ public class TvDetailsResponse {
     public void setId(String id) {
         this.id = id;
     }
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
     public String getStatus() {
         return status;
@@ -61,18 +65,6 @@ public class TvDetailsResponse {
     }
     public void setOverview(String overview) {
         this.overview = overview;
-    }
-    public String getRuntime() {
-        return runtime;
-    }
-    public void setRuntime(String runtime) {
-        this.runtime = runtime;
-    }
-    public String getImdbId() {
-        return imdbId;
-    }
-    public void setImdbId(String imdbId) {
-        this.imdbId = imdbId;
     }
     public String getBackdropPath() {
         return backdropPath;
@@ -90,13 +82,13 @@ public class TvDetailsResponse {
         return voteAverage;
     }
     public void setVoteAverage(float voteAverage) {
-        this.voteAverage = Math.round(voteAverage);
+        this.voteAverage = (float) (Math.round(voteAverage * 10.0)/ 10.0);
     }
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getFirstAirDate() {
+        return firstAirDate;
     }
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setFirstAirDate(String firstAirDate) {
+        this.firstAirDate = firstAirDate;
     }
     public Object[] getGenres() {
         return genres;
@@ -116,11 +108,29 @@ public class TvDetailsResponse {
     public void setNumberOfSeasons(String numberOfSeasons) {
         this.numberOfSeasons = numberOfSeasons;
     }
+    public String getInProduction() {
+        return inProduction;
+    }
+    public void setInProduction(String inProduction) {
+        this.inProduction = inProduction;
+    }
+    public String getNextEpisodeToAir() {
+        return nextEpisodeToAir;
+    }
+    public void setNextEpisodeToAir(String nextEpisodeToAir) {
+        this.nextEpisodeToAir = nextEpisodeToAir;
+    }
+    public Object[] getSeasons() {
+        return seasons;
+    }
+    public void setSeasons(Object[] seasons) {
+        this.seasons = seasons;
+    }
     public Object[] getProductionCountries() {
         return productionCountries;
     }
     public void setProductionCountries(Object[] productionCountries) {
-            this.productionCountries = productionCountries;
-        }
+        this.productionCountries = productionCountries;
+    }
 }
 
