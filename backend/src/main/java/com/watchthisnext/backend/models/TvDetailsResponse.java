@@ -9,9 +9,15 @@ import java.util.List;
 public class TvDetailsResponse {
     private String id;
     private String name;
+
+    @JsonProperty("original_name")
+    private String originalName;
+
     private String status;
     private String overview;
     private Video videos;
+    private ImagesResponse images;
+    private CreditsResponse credits;
 
     @JsonProperty("backdrop_path")
     private String backdropPath;
@@ -74,6 +80,18 @@ public class TvDetailsResponse {
     }
     public void setVideos(Video videos) {
         this.videos = videos;
+    }
+    public ImagesResponse getImages() {
+        return images;
+    }
+    public void setImages(ImagesResponse images) {
+        this.images = images;
+    }
+    public CreditsResponse getCredits() {
+        return credits;
+    }
+    public void setCredits(CreditsResponse credits) {
+        this.credits = credits;
     }
     public String getBackdropPath() {
         return backdropPath;

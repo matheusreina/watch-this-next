@@ -21,25 +21,43 @@ public class MovieService {
     }
 
     public MoviesResponse getPopularMovies (String language) {
+        String fullLanguage;
+        if (language.equals("pt")) {
+            fullLanguage = "pt-BR";
+        } else {
+            fullLanguage = "en-US";
+        }
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/popular")
-                                                .queryParam("api_key", API_KEY)
-                                                .queryParam("language", language)
-                                                .toUriString();
+                .queryParam("api_key", API_KEY)
+                .queryParam("language", fullLanguage)
+                .toUriString();
         return restTemplate.getForObject(url, MoviesResponse.class);
     }
 
     public MoviesResponse getTopRatedMovies (String language) {
+        String fullLanguage;
+        if (language.equals("pt")) {
+            fullLanguage = "pt-BR";
+        } else {
+            fullLanguage = "en-US";
+        }
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/top_rated")
                 .queryParam("api_key", API_KEY)
-                .queryParam("language", language)
+                .queryParam("language", fullLanguage)
                 .toUriString();
         return restTemplate.getForObject(url, MoviesResponse.class);
     }
 
     public MovieDetailsResponse getMovieDetails(String language, String movieId) {
+        String fullLanguage;
+        if (language.equals("pt")) {
+            fullLanguage = "pt-BR";
+        } else {
+            fullLanguage = "en-US";
+        }
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/" + movieId)
                 .queryParam("api_key", API_KEY)
-                .queryParam("language", language)
+                .queryParam("language", fullLanguage)
                 .queryParam("append_to_response", "videos")
                 .toUriString();
         return restTemplate.getForObject(url, MovieDetailsResponse.class);

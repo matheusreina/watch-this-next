@@ -21,17 +21,29 @@ public class EpisodeService {
     }
 
     public EpisodeGroupResponse getEpisodeGroup(String language, String tvId) {
+        String fullLanguage;
+        if (language.equals("pt")) {
+            fullLanguage = "pt-BR";
+        } else {
+            fullLanguage = "en-US";
+        }
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/episode_groups")
                 .queryParam("api_key", API_KEY)
-                .queryParam("language", language)
+                .queryParam("language", fullLanguage)
                 .toUriString();
         return restTemplate.getForObject(url, EpisodeGroupResponse.class);
     }
 
     public EpisodeDetailsResponse getEpisodeList(String language, String epGroupId) {
+        String fullLanguage;
+        if (language.equals("pt")) {
+            fullLanguage = "pt-BR";
+        } else {
+            fullLanguage = "en-US";
+        }
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/episode_group/" + epGroupId)
                 .queryParam("api_key", API_KEY)
-                .queryParam("language", language)
+                .queryParam("language", fullLanguage)
                 .toUriString();
         return restTemplate.getForObject(url, EpisodeDetailsResponse.class);
     }
