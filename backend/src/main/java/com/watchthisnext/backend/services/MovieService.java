@@ -40,6 +40,7 @@ public class MovieService {
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/" + movieId)
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", language)
+                .queryParam("append_to_response", "videos")
                 .toUriString();
         return restTemplate.getForObject(url, MovieDetailsResponse.class);
     }

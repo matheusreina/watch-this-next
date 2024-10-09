@@ -3,6 +3,8 @@ package com.watchthisnext.backend.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieDetailsResponse {
     private String id;
@@ -10,6 +12,7 @@ public class MovieDetailsResponse {
     private String status;
     private String overview;
     private String runtime;
+    private Video videos;
 
     @JsonProperty("imdb_id")
     private String imdbId;
@@ -68,6 +71,12 @@ public class MovieDetailsResponse {
     public void setRuntime(String runtime) {
         this.runtime = runtime;
     }
+    public Video getVideos() {
+        return videos;
+    }
+    public void setVideos(Video videos) {
+        this.videos = videos;
+    }
     public String getImdbId() {
         return imdbId;
     }
@@ -121,5 +130,68 @@ public class MovieDetailsResponse {
     }
     public void setProductionCountries(Object[] productionCountries) {
         this.productionCountries = productionCountries;
+    }
+
+    public static class Video {
+        private List<TvDetailsResponse.Video.VideoResults> results;
+
+        //G&S
+        public List<TvDetailsResponse.Video.VideoResults> getResults() {
+            return results;
+        }
+
+        public void setResults(List<TvDetailsResponse.Video.VideoResults> results) {
+            this.results = results;
+        }
+
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class VideoResults {
+            private String name;
+            private String key;
+            private String site;
+            private String type;
+            private boolean official;
+
+            @JsonProperty("published_at")
+            private String publishedAt;
+
+            //G&S
+            public String getName() {
+                return name;
+            }
+            public void setName(String name) {
+                this.name = name;
+            }
+            public String getKey() {
+                return key;
+            }
+            public void setKey(String key) {
+                this.key = "https://www.youtube.com/watch?v=" + key;
+            }
+            public String getSite() {
+                return site;
+            }
+            public void setSite(String site) {
+                this.site = site;
+            }
+            public String getType() {
+                return type;
+            }
+            public void setType(String type) {
+                this.type = type;
+            }
+            public boolean isOfficial() {
+                return official;
+            }
+            public void setOfficial(boolean official) {
+                this.official = official;
+            }
+            public String getPublishedAt() {
+                return publishedAt;
+            }
+            public void setPublishedAt(String publishedAt) {
+                this.publishedAt = publishedAt;
+            }
+        }
     }
 }

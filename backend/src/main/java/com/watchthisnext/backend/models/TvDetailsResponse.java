@@ -11,7 +11,7 @@ public class TvDetailsResponse {
     private String name;
     private String status;
     private String overview;
-    private List<Video> videos;
+    private Video videos;
 
     @JsonProperty("backdrop_path")
     private String backdropPath;
@@ -69,10 +69,10 @@ public class TvDetailsResponse {
     public void setOverview(String overview) {
         this.overview = overview;
     }
-    public List<Video> getVideos() {
+    public Video getVideos() {
         return videos;
     }
-    public void setVideos(List<Video> videos) {
+    public void setVideos(Video videos) {
         this.videos = videos;
     }
     public String getBackdropPath() {
@@ -142,8 +142,6 @@ public class TvDetailsResponse {
         this.productionCountries = productionCountries;
     }
 
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Video {
         private List<VideoResults> results;
 
