@@ -7,18 +7,11 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ImagesResponse {
-    private String id;
     private List<Image> logos;
     private List<Image> posters;
     private List<Image> backdrops;
 
     // Getters & Setters
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
     public List<Image> getLogos() {
         return logos;
     }

@@ -1,15 +1,13 @@
 package com.watchthisnext.backend.services;
 
-import com.watchthisnext.backend.models.CreditsResponse;
-import com.watchthisnext.backend.models.ImagesResponse;
-import com.watchthisnext.backend.models.TvDetailsResponse;
-import com.watchthisnext.backend.models.TvResponse;
+import com.watchthisnext.backend.models.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,52 +53,67 @@ public class TvService {
 
     public TvDetailsResponse getTvDetails(String language, String tvId) {
         String fullLanguage;
+        final String FINAL_LANGUAGE;
 
         if (language.equals("pt")) {
             fullLanguage = "pt-BR";
+            FINAL_LANGUAGE = "pt";
         } else {
             fullLanguage = "en-US";
-            language = "en";
+            FINAL_LANGUAGE = "en";
         }
-
-        final String FINAL_LANGUAGE = language;
 
         // Main request
         String tvUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId)
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", fullLanguage)
-                .queryParam("append_to_response", "videos")
                 .toUriString();
         TvDetailsResponse tvDetails = restTemplate.getForObject(tvUrl, TvDetailsResponse.class);
         assert tvDetails != null;
 
+        // Videos request
+        String videosUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/videos")
+                .queryParam("api_key", API_KEY)
+                .queryParam("language", fullLanguage)
+                .toUriString();
+        VideosResponse videos = restTemplate.getForObject(videosUrl, VideosResponse.class);
+
         // Filtering video response for official=true & videoType="Trailer"
-        if (tvDetails.getVideos() != null) {
-            List<TvDetailsResponse.Video.VideoResults> filteredVideos = tvDetails.getVideos().getResults().stream()
+        if (videos != null) {
+            List<VideosResponse.VideoResults> filteredVideos = videos.getResults().stream()
                     .filter(video -> video.isOfficial() && "Trailer".equalsIgnoreCase(video.getType())).toList();
 
-            tvDetails.getVideos().setResults(filteredVideos);
+            videos.setResults(filteredVideos);
         }
+
+        tvDetails.setVideos(videos);
 
         // Images request
         String imagesUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/images")
                 .queryParam("api_key", API_KEY)
-                .queryParam("language", language)
                 .toUriString();
         ImagesResponse images = restTemplate.getForObject(imagesUrl, ImagesResponse.class);
 
         // Filtering "/images" response
         if (images != null){
 
-            System.out.println(images.getBackdrops().getFirst().getLanguage());
             List<ImagesResponse.Image> filteredLogoImages = images.getLogos().stream()
-                    .filter(logo -> logo.getLanguage() == null || FINAL_LANGUAGE.equalsIgnoreCase(logo.getLanguage())).toList();
+                    .filter(logo -> {
+                        String lang = logo.getLanguage();
+                        return lang == null || lang.equalsIgnoreCase(FINAL_LANGUAGE);
+                    }).toList();
 
             List<ImagesResponse.Image> filteredPosterImages = images.getPosters().stream()
-                    .filter(poster -> poster.getLanguage() == null || FINAL_LANGUAGE.equalsIgnoreCase(poster.getLanguage())).toList();
+                    .filter(poster -> {
+                        String lang = poster.getLanguage();
+                        return lang == null || lang.equalsIgnoreCase(FINAL_LANGUAGE);
+                    }).toList();
 
             List<ImagesResponse.Image> filteredBackdropImages = images.getBackdrops().stream()
-                    .filter(backdrop -> backdrop.getLanguage() == null || FINAL_LANGUAGE.equalsIgnoreCase(backdrop.getLanguage())).toList();
+                    .filter(backdrop -> {
+                        String lang = backdrop.getLanguage();
+                        return lang == null || lang.equalsIgnoreCase(FINAL_LANGUAGE);
+                    }).toList();
 
             // Set filtered "/images" response
             images.setLogos(filteredLogoImages);
