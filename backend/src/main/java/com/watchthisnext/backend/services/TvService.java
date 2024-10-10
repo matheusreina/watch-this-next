@@ -55,11 +55,16 @@ public class TvService {
 
     public TvDetailsResponse getTvDetails(String language, String tvId) {
         String fullLanguage;
+
         if (language.equals("pt")) {
             fullLanguage = "pt-BR";
         } else {
             fullLanguage = "en-US";
+            language = "en";
         }
+
+        final String FINAL_LANGUAGE = language;
+
         // Main request
         String tvUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId)
                 .queryParam("api_key", API_KEY)
@@ -69,25 +74,47 @@ public class TvService {
         TvDetailsResponse tvDetails = restTemplate.getForObject(tvUrl, TvDetailsResponse.class);
         assert tvDetails != null;
 
+        // Filtering video response for official=true & videoType="Trailer"
+        if (tvDetails.getVideos() != null) {
+            List<TvDetailsResponse.Video.VideoResults> filteredVideos = tvDetails.getVideos().getResults().stream()
+                    .filter(video -> video.isOfficial() && "Trailer".equalsIgnoreCase(video.getType())).toList();
+
+            tvDetails.getVideos().setResults(filteredVideos);
+        }
+
         // Images request
         String imagesUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/images")
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", language)
                 .toUriString();
         ImagesResponse images = restTemplate.getForObject(imagesUrl, ImagesResponse.class);
+
+        // Filtering "/images" response
+        if (images != null){
+
+            System.out.println(images.getBackdrops().getFirst().getLanguage());
+            List<ImagesResponse.Image> filteredLogoImages = images.getLogos().stream()
+                    .filter(logo -> logo.getLanguage() == null || FINAL_LANGUAGE.equalsIgnoreCase(logo.getLanguage())).toList();
+
+            List<ImagesResponse.Image> filteredPosterImages = images.getPosters().stream()
+                    .filter(poster -> poster.getLanguage() == null || FINAL_LANGUAGE.equalsIgnoreCase(poster.getLanguage())).toList();
+
+            List<ImagesResponse.Image> filteredBackdropImages = images.getBackdrops().stream()
+                    .filter(backdrop -> backdrop.getLanguage() == null || FINAL_LANGUAGE.equalsIgnoreCase(backdrop.getLanguage())).toList();
+
+            // Set filtered "/images" response
+            images.setLogos(filteredLogoImages);
+            images.setPosters(filteredPosterImages);
+            images.setBackdrops(filteredBackdropImages);
+        }
+
         tvDetails.setImages(images);
 
-        if (images != null){
-            List<ImagesResponse.Image> filteredBackdropImages = (List<ImagesResponse.Image>) tvDetails.getImages().getBackdrops().stream()
-                    .filter(backdrop -> backdrop == null || language.equalsIgnoreCase(backdrop.getLanguage())).toList();
-        }
         // Credits request
         String creditsUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/credits")
                 .queryParam("api_key", API_KEY)
                 .toUriString();
         CreditsResponse credits = restTemplate.getForObject(creditsUrl, CreditsResponse.class);
-
-
 
         tvDetails.setCredits(credits);
 
