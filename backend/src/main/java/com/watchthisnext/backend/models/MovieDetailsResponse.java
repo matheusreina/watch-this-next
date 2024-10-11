@@ -26,7 +26,7 @@ public class MovieDetailsResponse {
     private String posterPath;
 
     @JsonProperty("vote_average")
-    private float voteAverage;
+    private double voteAverage;
 
     @JsonProperty("release_date")
     private String releaseDate;
@@ -103,11 +103,11 @@ public class MovieDetailsResponse {
     public void setPosterPath(String posterPath) {
         this.posterPath = "https://image.tmdb.org/t/p/w500" + posterPath;
     }
-    public float getVoteAverage() {
+    public double getVoteAverage() {
         return voteAverage;
     }
-    public void setVoteAverage(float voteAverage) {
-        this.voteAverage = (float) (Math.round(voteAverage * 10.0)/ 10.0);
+    public void setVoteAverage(double voteAverage) {
+        this.voteAverage = (Math.round((voteAverage/2) * 10.0)/ 10.0);
     }
     public String getReleaseDate() {
         return releaseDate;
