@@ -1,14 +1,16 @@
 package com.watchthisnext.backend.services;
 
-import com.watchthisnext.backend.models.*;
+import com.watchthisnext.backend.models.media.ImagesResponse;
+import com.watchthisnext.backend.models.media.VideosResponse;
+import com.watchthisnext.backend.models.person.CreditsResponse;
+import com.watchthisnext.backend.models.tv.TvDetailsResponse;
+import com.watchthisnext.backend.models.tv.TvResponse;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class TvService {

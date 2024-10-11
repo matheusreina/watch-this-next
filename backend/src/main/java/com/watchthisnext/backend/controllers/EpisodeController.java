@@ -1,7 +1,7 @@
 package com.watchthisnext.backend.controllers;
 
-import com.watchthisnext.backend.models.EpisodeDetailsResponse;
-import com.watchthisnext.backend.models.EpisodeGroupResponse;
+import com.watchthisnext.backend.models.episodes.EpisodeDetailsResponse;
+import com.watchthisnext.backend.models.episodes.EpisodeGroupResponse;
 import com.watchthisnext.backend.services.EpisodeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

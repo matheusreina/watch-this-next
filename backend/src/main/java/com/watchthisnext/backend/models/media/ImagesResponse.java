@@ -1,4 +1,4 @@
-package com.watchthisnext.backend.models;
+package com.watchthisnext.backend.models.media;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -51,7 +51,7 @@ public class ImagesResponse {
             return filePath;
         }
         public void setFilePath(String filePath) {
-            this.filePath = "https://image.tmdb.org/t/p/w500/" + filePath;
+            this.filePath = "https://image.tmdb.org/t/p/original/" + filePath;
         }
         public String getLanguage() {
             return language;

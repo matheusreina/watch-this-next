@@ -1,4 +1,4 @@
-package com.watchthisnext.backend.models;
+package com.watchthisnext.backend.models.episodes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -99,7 +99,7 @@ public class EpisodeDetailsResponse {
                 return stillPath;
             }
             public void setStillPath(String stillPath) {
-                this.stillPath = "https://image.tmdb.org/t/p/w500" + stillPath;
+                this.stillPath = "https://image.tmdb.org/t/p/original/" + stillPath;
             }
             public double getVoteAverage() {
                 return voteAverage;

@@ -1,6 +1,10 @@
 package com.watchthisnext.backend.services;
 
-import com.watchthisnext.backend.models.*;
+import com.watchthisnext.backend.models.media.ImagesResponse;
+import com.watchthisnext.backend.models.media.VideosResponse;
+import com.watchthisnext.backend.models.movie.MovieDetailsResponse;
+import com.watchthisnext.backend.models.movie.MoviesResponse;
+import com.watchthisnext.backend.models.person.CreditsResponse;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

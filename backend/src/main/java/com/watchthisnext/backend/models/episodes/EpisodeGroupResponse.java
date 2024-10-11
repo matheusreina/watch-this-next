@@ -1,4 +1,4 @@
-package com.watchthisnext.backend.models;
+package com.watchthisnext.backend.models.episodes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

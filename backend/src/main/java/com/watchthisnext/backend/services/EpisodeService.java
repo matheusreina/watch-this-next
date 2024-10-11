@@ -1,7 +1,7 @@
 package com.watchthisnext.backend.services;
 
-import com.watchthisnext.backend.models.EpisodeDetailsResponse;
-import com.watchthisnext.backend.models.EpisodeGroupResponse;
+import com.watchthisnext.backend.models.episodes.EpisodeDetailsResponse;
+import com.watchthisnext.backend.models.episodes.EpisodeGroupResponse;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

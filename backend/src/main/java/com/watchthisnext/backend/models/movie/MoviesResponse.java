@@ -1,4 +1,4 @@
-package com.watchthisnext.backend.models;
+package com.watchthisnext.backend.models.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -74,13 +74,13 @@ public class MoviesResponse {
             return posterPath;
         }
         public void setPosterPath(String posterPath) {
-            this.posterPath = "https://image.tmdb.org/t/p/w500" + posterPath;
+            this.posterPath = "https://image.tmdb.org/t/p/original/" + posterPath;
         }
         public String getBackdropPath() {
             return backdropPath;
         }
         public void setBackdropPath(String backdropPath) {
-            this.backdropPath = "https://image.tmdb.org/t/p/w500" + backdropPath;
+            this.backdropPath = "https://image.tmdb.org/t/p/original/" + backdropPath;
         }
         public String getReleaseDate() {
             return releaseDate;
