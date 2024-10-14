@@ -3,6 +3,8 @@ package com.watchthisnext.backend.models.episodes;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SeasonsResponse {
     private String id;
@@ -20,7 +22,7 @@ public class SeasonsResponse {
 
     @JsonProperty("poster_path")
     private String posterPath;
-    private EpisodesResponse episodes;
+    private List<EpisodesResponse> episodes;
 
     // Getters & Setters
     public String getId() {
@@ -63,12 +65,12 @@ public class SeasonsResponse {
         return posterPath;
     }
     public void setPosterPath(String posterPath) {
-        this.posterPath = "https://image.tmdb.org/t/p/original/" + posterPath;
+        this.posterPath = "https://image.tmdb.org/t/p/original" + posterPath;
     }
-    public EpisodesResponse getEpisodes() {
+    public List<EpisodesResponse> getEpisodes() {
         return episodes;
     }
-    public void setEpisodes(EpisodesResponse episodes) {
+    public void setEpisodes(List<EpisodesResponse> episodes) {
         this.episodes = episodes;
     }
 }

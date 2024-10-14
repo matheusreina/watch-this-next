@@ -35,16 +35,16 @@ public class TvDetailsResponse {
     @JsonProperty("first_air_date")
     private String firstAirDate;
 
-    private Object[] genres;
+    private List<Object> genres;
 
     @JsonProperty("number_of_episodes")
-    private String numberOfEpisodes;
+    private int numberOfEpisodes;
 
     @JsonProperty("number_of_seasons")
-    private String numberOfSeasons;
+    private int numberOfSeasons;
 
     @JsonProperty("in_production")
-    private String inProduction;
+    private boolean inProduction;
 
     @JsonProperty("next_episode_to_air")
     private String nextEpisodeToAir;
@@ -52,7 +52,7 @@ public class TvDetailsResponse {
     private List<SeasonsResponse> seasons;
 
     @JsonProperty("production_countries")
-    private Object[] productionCountries;
+    private List<Object> productionCountries;
 
     // Getters & Setters
     public String getId() {
@@ -119,7 +119,7 @@ public class TvDetailsResponse {
         return voteAverage;
     }
     public void setVoteAverage(double voteAverage) {
-        this.voteAverage = (float) ((Math.round((voteAverage/2) * 10.0)/10.0));
+        this.voteAverage = ((Math.round((voteAverage/2) * 10.0)/10.0));
     }
     public String getFirstAirDate() {
         return firstAirDate;
@@ -127,28 +127,28 @@ public class TvDetailsResponse {
     public void setFirstAirDate(String firstAirDate) {
         this.firstAirDate = firstAirDate;
     }
-    public Object[] getGenres() {
+    public List<Object> getGenres() {
         return genres;
     }
-    public void setGenres(Object[] genres) {
+    public void setGenres(List<Object> genres) {
         this.genres = genres;
     }
-    public String getNumberOfEpisodes() {
+    public int getNumberOfEpisodes() {
         return numberOfEpisodes;
     }
-    public void setNumberOfEpisodes(String numberOfEpisodes) {
+    public void setNumberOfEpisodes(int numberOfEpisodes) {
         this.numberOfEpisodes = numberOfEpisodes;
     }
-    public String getNumberOfSeasons() {
+    public int getNumberOfSeasons() {
         return numberOfSeasons;
     }
-    public void setNumberOfSeasons(String numberOfSeasons) {
+    public void setNumberOfSeasons(int numberOfSeasons) {
         this.numberOfSeasons = numberOfSeasons;
     }
-    public String getInProduction() {
+    public boolean isInProduction() {
         return inProduction;
     }
-    public void setInProduction(String inProduction) {
+    public void setInProduction(boolean inProduction) {
         this.inProduction = inProduction;
     }
     public String getNextEpisodeToAir() {
@@ -163,10 +163,10 @@ public class TvDetailsResponse {
     public void setSeasons(List<SeasonsResponse> seasons) {
         this.seasons = seasons;
     }
-    public Object[] getProductionCountries() {
+    public List<Object> getProductionCountries() {
         return productionCountries;
     }
-    public void setProductionCountries(Object[] productionCountries) {
+    public void setProductionCountries(List<Object> productionCountries) {
         this.productionCountries = productionCountries;
     }
 

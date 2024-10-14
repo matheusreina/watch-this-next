@@ -1,5 +1,6 @@
 package com.watchthisnext.backend.services;
 
+import com.watchthisnext.backend.models.episodes.SeasonsResponse;
 import com.watchthisnext.backend.models.media.ImagesResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -132,6 +134,23 @@ public class TvService {
         CreditsResponse credits = restTemplate.getForObject(creditsUrl, CreditsResponse.class);
 
         tvDetails.setCredits(credits);
+
+        // Season & Episodes request
+        List<SeasonsResponse> seasons = tvDetails.getSeasons();
+        List<SeasonsResponse> newSeasons = new ArrayList<SeasonsResponse>();
+        if (seasons != null) {
+            String seasonUrl;
+            for (int i = 0; i < seasons.size(); i++) {
+                seasonUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/season/" + i)
+                        .queryParam("api_key", API_KEY)
+                        .queryParam("language", fullLanguage)
+                        .toUriString();
+                newSeasons.add(restTemplate.getForObject(seasonUrl, SeasonsResponse.class));
+
+            }
+
+            tvDetails.setSeasons(newSeasons);
+        }
 
         return tvDetails;
     }

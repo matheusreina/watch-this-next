@@ -25,7 +25,7 @@ public class MoviesController {
         return movieService.getTopRatedMovies(language);
     }
 
-    @GetMapping("{language}/movie/details/{movieId}")
+    @GetMapping("{language}/movie/{movieId}")
     public MovieDetailsResponse getMovieDetails(@PathVariable String language, @PathVariable String movieId) {
         return movieService.getMovieDetails(language, movieId);
     }

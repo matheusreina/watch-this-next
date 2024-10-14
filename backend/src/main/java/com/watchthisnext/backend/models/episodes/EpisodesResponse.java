@@ -75,7 +75,7 @@ public class EpisodesResponse {
         return stillPath;
     }
     public void setStillPath(String stillPath) {
-        this.stillPath = "https://image.tmdb.org/t/p/original/" + stillPath;
+        this.stillPath = "https://image.tmdb.org/t/p/original" + stillPath;
     }
     public double getVoteAverage() {
         return voteAverage;

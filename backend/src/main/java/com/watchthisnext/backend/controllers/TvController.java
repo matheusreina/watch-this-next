@@ -25,7 +25,7 @@ public class TvController {
         return tvService.getTopRatedTvs(language);
     }
 
-    @GetMapping("{language}/tv/details/{tvId}")
+    @GetMapping("{language}/tv/{tvId}")
     public TvDetailsResponse getTvDetails(@PathVariable String language, @PathVariable String tvId) {
         return tvService.getTvDetails(language, tvId);
     }
