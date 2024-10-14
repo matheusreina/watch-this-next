@@ -2,9 +2,12 @@ package com.watchthisnext.backend.models.tv;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.watchthisnext.backend.models.episodes.SeasonsResponse;
 import com.watchthisnext.backend.models.media.ImagesResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
+
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TvDetailsResponse {
@@ -46,7 +49,7 @@ public class TvDetailsResponse {
     @JsonProperty("next_episode_to_air")
     private String nextEpisodeToAir;
 
-    private Object[] seasons;
+    private List<SeasonsResponse> seasons;
 
     @JsonProperty("production_countries")
     private Object[] productionCountries;
@@ -154,10 +157,10 @@ public class TvDetailsResponse {
     public void setNextEpisodeToAir(String nextEpisodeToAir) {
         this.nextEpisodeToAir = nextEpisodeToAir;
     }
-    public Object[] getSeasons() {
+    public List<SeasonsResponse> getSeasons() {
         return seasons;
     }
-    public void setSeasons(Object[] seasons) {
+    public void setSeasons(List<SeasonsResponse> seasons) {
         this.seasons = seasons;
     }
     public Object[] getProductionCountries() {
