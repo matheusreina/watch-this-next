@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.watchthisnext.backend.models.media.ImagesResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
-import com.watchthisnext.backend.utils.AppUtils;
-import com.watchthisnext.backend.utils.AppUtils.*;
+import com.watchthisnext.backend.utils.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieDetailsResponse {

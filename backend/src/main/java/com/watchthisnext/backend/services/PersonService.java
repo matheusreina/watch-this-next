@@ -1,8 +1,6 @@
 package com.watchthisnext.backend.services;
 
-import com.watchthisnext.backend.models.person.CombinedCreditsResponse;
 import com.watchthisnext.backend.models.person.PersonResponse;
-import com.watchthisnext.backend.utils.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

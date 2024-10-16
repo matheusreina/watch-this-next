@@ -2,7 +2,7 @@ package com.watchthisnext.backend.models.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.watchthisnext.backend.utils.AppUtils;
+import com.watchthisnext.backend.utils.*;
 
 import java.util.List;
 
