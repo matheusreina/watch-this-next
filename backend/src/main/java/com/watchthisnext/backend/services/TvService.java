@@ -3,11 +3,10 @@ package com.watchthisnext.backend.services;
 import com.watchthisnext.backend.models.episodes.SeasonsResponse;
 import com.watchthisnext.backend.models.media.ImagesResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
-import com.watchthisnext.backend.models.movie.MoviesResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
 import com.watchthisnext.backend.models.tv.TvDetailsResponse;
 import com.watchthisnext.backend.models.tv.TvResponse;
-import com.watchthisnext.backend.utils.AppUtils;
+import com.watchthisnext.backend.utils.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -118,6 +117,12 @@ public class TvService {
         if (videos != null) {
             List<VideosResponse.VideoResults> filteredVideos = videos.getResults().stream()
                     .filter(video -> video.isOfficial() && "Trailer".equalsIgnoreCase(video.getType())).toList();
+
+            // Date formatting
+            for (VideosResponse.VideoResults videoResults: filteredVideos) {
+                String date = videoResults.getPublishedAt();
+                videoResults.setPublishedAt(AppUtils.dateFormatter(date, language));
+            }
 
             videos.setResults(filteredVideos);
         }

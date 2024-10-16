@@ -5,7 +5,7 @@ import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.movie.MovieDetailsResponse;
 import com.watchthisnext.backend.models.movie.MoviesResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
-import com.watchthisnext.backend.utils.AppUtils;
+import com.watchthisnext.backend.utils.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -115,9 +115,15 @@ public class MovieService {
         // Filtering video response for official=true & videoType="Trailer"
         if (videos != null) {
             List<VideosResponse.VideoResults> filteredVideos = videos.getResults().stream()
-                    .filter(video -> video.isOfficial() || "Trailer".equalsIgnoreCase(video.getType())).toList();
+                    .filter(video -> video.isOfficial() && "Trailer".equalsIgnoreCase(video.getType())).toList();
 
+            // Date formatting
+            for (VideosResponse.VideoResults videoResults: filteredVideos) {
+                String date = videoResults.getPublishedAt();
+                videoResults.setPublishedAt(AppUtils.dateFormatter(date, language));
+            }
             videos.setResults(filteredVideos);
+
         }
 
         movieDetails.setVideos(videos);

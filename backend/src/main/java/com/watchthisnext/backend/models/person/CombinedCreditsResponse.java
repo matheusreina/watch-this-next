@@ -2,7 +2,7 @@ package com.watchthisnext.backend.models.person;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.watchthisnext.backend.utils.AppUtils;
+import com.watchthisnext.backend.utils.*;
 
 import java.util.List;
 
@@ -27,16 +27,8 @@ public class CombinedCreditsResponse {
 
     public static class CastCredit {
         private String title;
+        private String name;
         private String character;
-
-        @JsonProperty("episode_count")
-        private String episodeCount;
-
-        @JsonProperty("release_date")
-        private String releaseDate;
-
-        @JsonProperty("first_air_date")
-        private String firstAirDate;
 
         @JsonProperty("vote_average")
         private double voteAverage;
@@ -61,29 +53,14 @@ public class CombinedCreditsResponse {
         public void setTitle(String title) {
             this.title = title;
         }
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
         public String getCharacter() {
             return character;
-        }
-        public void setCharacter(String character) {
-            this.character = character;
-        }
-        public String getEpisodeCount() {
-            return episodeCount;
-        }
-        public void setEpisodeCount(String episodeCount) {
-            this.episodeCount = episodeCount;
-        }
-        public String getReleaseDate() {
-            return releaseDate;
-        }
-        public void setReleaseDate(String releaseDate) {
-            this.releaseDate = releaseDate;
-        }
-        public String getFirstAirDate() {
-            return firstAirDate;
-        }
-        public void setFirstAirDate(String firstAirDate) {
-            this.firstAirDate = firstAirDate;
         }
         public double getVoteAverage() {
             return voteAverage;

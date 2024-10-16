@@ -1,19 +1,26 @@
 package com.watchthisnext.backend.utils;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Arrays;
 
 public class AppUtils {
     public static String dateFormatter(String date, String language) {
+//        if (date == null) return null;
+
         String[] dateArray;
         String newDate;
 
-        if (date.length() > 10) {
-            newDate = date.substring(0,10);
-        } else {
-            newDate = date;
+        try {
+            if (date.length() > 10) {
+                newDate = date.substring(0, 10);
+            } else {
+                newDate = date;
+            }
+
+            dateArray = newDate.split("-");
+        } catch (Exception e) {
+            return null;
         }
-        dateArray = newDate.split("-");
 
         if (language.equalsIgnoreCase("pt")) {
             newDate = switch (dateArray[1]) {
