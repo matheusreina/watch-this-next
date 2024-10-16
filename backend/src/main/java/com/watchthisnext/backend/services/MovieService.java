@@ -5,6 +5,7 @@ import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.movie.MovieDetailsResponse;
 import com.watchthisnext.backend.models.movie.MoviesResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
+import com.watchthisnext.backend.utils.AppUtils;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -36,7 +37,19 @@ public class MovieService {
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", fullLanguage)
                 .toUriString();
-        return restTemplate.getForObject(url, MoviesResponse.class);
+        MoviesResponse results = restTemplate.getForObject(url, MoviesResponse.class);
+
+        if (results != null) {
+            List<MoviesResponse.Movie> popularMovies = results.getResults();
+
+            for (MoviesResponse.Movie movie : popularMovies) {
+                String date = movie.getReleaseDate();
+                movie.setReleaseDate(AppUtils.dateFormatter(date, language));
+            }
+
+            results.setResults(popularMovies);
+        }
+        return results;
     }
 
     public MoviesResponse getTopRatedMovies (String language) {
@@ -52,7 +65,19 @@ public class MovieService {
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", fullLanguage)
                 .toUriString();
-        return restTemplate.getForObject(url, MoviesResponse.class);
+        MoviesResponse results = restTemplate.getForObject(url, MoviesResponse.class);
+
+        if (results != null) {
+            List<MoviesResponse.Movie> topMovies = results.getResults();
+
+            for (MoviesResponse.Movie movie : topMovies) {
+                String date = movie.getReleaseDate();
+                movie.setReleaseDate(AppUtils.dateFormatter(date, language));
+            }
+
+            results.setResults(topMovies);
+        }
+        return results;
     }
 
     public MovieDetailsResponse getMovieDetails(String language, String movieId) {
@@ -74,6 +99,11 @@ public class MovieService {
                 .toUriString();
         MovieDetailsResponse movieDetails = restTemplate.getForObject(movieUrl, MovieDetailsResponse.class);
         assert movieDetails != null;
+
+        // Date formatting
+        if (movieDetails.getReleaseDate() != null) {
+            movieDetails.setReleaseDate(AppUtils.dateFormatter(movieDetails.getReleaseDate(), language));
+        }
 
         // Videos request
         String videosUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/" + movieId + "/videos")

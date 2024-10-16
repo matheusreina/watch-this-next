@@ -2,6 +2,7 @@ package com.watchthisnext.backend.models.person;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.watchthisnext.backend.utils.AppUtils;
 
 import java.util.List;
 
@@ -118,7 +119,7 @@ public class CombinedCreditsResponse {
             return posterPath;
         }
         public void setPosterPath(String posterPath) {
-            this.posterPath = "https://image.tmdb.org/t/p/original/" + posterPath;
+            this.posterPath = AppUtils.imageLinkFormatter(posterPath);
         }
     }
 
@@ -223,7 +224,7 @@ public class CombinedCreditsResponse {
             return posterPath;
         }
         public void setPosterPath(String posterPath) {
-            this.posterPath = "https://image.tmdb.org/t/p/original/" + posterPath;
+            this.posterPath = AppUtils.imageLinkFormatter(posterPath);
         }
     }
 }

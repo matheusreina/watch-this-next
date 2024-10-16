@@ -2,6 +2,7 @@ package com.watchthisnext.backend.models.person;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.watchthisnext.backend.utils.AppUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonResponse {
@@ -95,7 +96,7 @@ public class PersonResponse {
         return profilePicture;
     }
     public void setProfilePicture(String profilePicture) {
-        this.profilePicture = "https://image.tmdb.org/t/p/original" + profilePicture;
+        this.profilePicture = AppUtils.imageLinkFormatter(profilePicture);
     }
     public CombinedCreditsResponse getCombinedCredits() {
         return combinedCredits;

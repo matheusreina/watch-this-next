@@ -2,6 +2,7 @@ package com.watchthisnext.backend.models.person;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.watchthisnext.backend.utils.AppUtils;
 
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class CreditsResponse {
             return profilePath;
         }
         public void setProfilePath(String profilePath) {
-            this.profilePath = "https://image.tmdb.org/t/p/original/" +  profilePath;
+            this.profilePath = AppUtils.imageLinkFormatter(profilePath);
         }
         public int getOrder() {
             return order;

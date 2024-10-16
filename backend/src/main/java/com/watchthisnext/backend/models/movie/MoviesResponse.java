@@ -2,6 +2,7 @@ package com.watchthisnext.backend.models.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.watchthisnext.backend.utils.AppUtils;
 
 import java.util.List;
 
@@ -74,13 +75,13 @@ public class MoviesResponse {
             return posterPath;
         }
         public void setPosterPath(String posterPath) {
-            this.posterPath = "https://image.tmdb.org/t/p/original/" + posterPath;
+            this.posterPath = AppUtils.imageLinkFormatter(posterPath);
         }
         public String getBackdropPath() {
             return backdropPath;
         }
         public void setBackdropPath(String backdropPath) {
-            this.backdropPath = "https://image.tmdb.org/t/p/original/" + backdropPath;
+            this.backdropPath = AppUtils.imageLinkFormatter(backdropPath);
         }
         public String getReleaseDate() {
             return releaseDate;
@@ -92,7 +93,7 @@ public class MoviesResponse {
             return voteAverage;
         }
         public void setVoteAverage(double voteAverage) {
-            this.voteAverage = ((Math.round((voteAverage/2) * 10.0)/10.0));
+            this.voteAverage = AppUtils.voteAverageFormatter(voteAverage);
         }
     }
 }

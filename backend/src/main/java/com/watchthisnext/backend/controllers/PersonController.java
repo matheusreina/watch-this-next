@@ -16,6 +16,6 @@ public class PersonController {
 
     @GetMapping("{language}/person/{personId}")
     public PersonResponse getPersonDetails(@PathVariable String language, @PathVariable String personId) {
-        return personService.getPopularTvs(language, personId);
+        return personService.getPersonDetails(language, personId);
     }
 }

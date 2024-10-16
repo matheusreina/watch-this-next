@@ -3,6 +3,8 @@ package com.watchthisnext.backend.services;
 import com.watchthisnext.backend.models.episodes.EpisodesResponse;
 import com.watchthisnext.backend.models.episodes.SeasonsResponse;
 import com.watchthisnext.backend.models.tv.TvDetailsResponse;
+import com.watchthisnext.backend.models.tv.TvResponse;
+import com.watchthisnext.backend.utils.AppUtils;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -42,7 +44,7 @@ public class SeasonsService {
         // Season & Episodes request
         assert tvDetails != null;
         List<SeasonsResponse> seasons = tvDetails.getSeasons();
-        List<SeasonsResponse> newSeasons = new ArrayList<SeasonsResponse>();
+        List<SeasonsResponse> newSeasons = new ArrayList<>();
         if (seasons != null) {
             String seasonUrl;
             for (int i = 0; i < seasons.size(); i++) {
@@ -51,9 +53,20 @@ public class SeasonsService {
                         .queryParam("language", fullLanguage)
                         .toUriString();
                 newSeasons.add(restTemplate.getForObject(seasonUrl, SeasonsResponse.class));
-
             }
 
+            // Date formatting
+            for (SeasonsResponse season : newSeasons) {
+                String seasonDate = season.getAirDate();
+                season.setAirDate(AppUtils.dateFormatter(seasonDate, language));
+
+                List<EpisodesResponse> episodes = season.getEpisodes();
+                for (EpisodesResponse episode: episodes) {
+                    String episodeDate = episode.getAirDate();
+                    episode.setAirDate(AppUtils.dateFormatter(episodeDate, language));
+                }
+                season.setEpisodes(episodes);
+            }
         }
             return newSeasons;
     }

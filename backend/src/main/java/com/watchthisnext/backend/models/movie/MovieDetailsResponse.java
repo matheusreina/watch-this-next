@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.watchthisnext.backend.models.media.ImagesResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
+import com.watchthisnext.backend.utils.AppUtils;
+import com.watchthisnext.backend.utils.AppUtils.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieDetailsResponse {
@@ -96,19 +98,19 @@ public class MovieDetailsResponse {
         return backdropPath;
     }
     public void setBackdropPath(String backdropPath) {
-        this.backdropPath = "https://image.tmdb.org/t/p/original/" + backdropPath;
+        this.backdropPath = AppUtils.imageLinkFormatter(backdropPath);
     }
     public String getPosterPath() {
         return posterPath;
     }
     public void setPosterPath(String posterPath) {
-        this.posterPath = "https://image.tmdb.org/t/p/original/" + posterPath;
+        this.posterPath = AppUtils.imageLinkFormatter(posterPath);
     }
     public double getVoteAverage() {
         return voteAverage;
     }
     public void setVoteAverage(double voteAverage) {
-        this.voteAverage = (Math.round((voteAverage/2) * 10.0)/ 10.0);
+        this.voteAverage = AppUtils.voteAverageFormatter(voteAverage);
     }
     public String getReleaseDate() {
         return releaseDate;

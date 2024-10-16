@@ -3,9 +3,11 @@ package com.watchthisnext.backend.services;
 import com.watchthisnext.backend.models.episodes.SeasonsResponse;
 import com.watchthisnext.backend.models.media.ImagesResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
+import com.watchthisnext.backend.models.movie.MoviesResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
 import com.watchthisnext.backend.models.tv.TvDetailsResponse;
 import com.watchthisnext.backend.models.tv.TvResponse;
+import com.watchthisnext.backend.utils.AppUtils;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -38,7 +40,19 @@ public class TvService {
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", fullLanguage)
                 .toUriString();
-        return restTemplate.getForObject(url, TvResponse.class);
+        TvResponse results = restTemplate.getForObject(url, TvResponse.class);
+
+        if (results != null) {
+            List<TvResponse.Tv> popularTvs = results.getResults();
+
+            for (TvResponse.Tv tv : popularTvs) {
+                String date = tv.getFirstAirDate();
+                tv.setFirstAirDate(AppUtils.dateFormatter(date, language));
+            }
+
+            results.setResults(popularTvs);
+        }
+        return results;
     }
 
     public TvResponse getTopRatedTvs(String language) {
@@ -52,7 +66,19 @@ public class TvService {
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", fullLanguage)
                 .toUriString();
-        return restTemplate.getForObject(url, TvResponse.class);
+        TvResponse results = restTemplate.getForObject(url, TvResponse.class);
+
+        if (results != null) {
+            List<TvResponse.Tv> topTvs = results.getResults();
+
+            for (TvResponse.Tv tv : topTvs) {
+                String date = tv.getFirstAirDate();
+                tv.setFirstAirDate(AppUtils.dateFormatter(date, language));
+            }
+
+            results.setResults(topTvs);
+        }
+        return results;
     }
 
     public TvDetailsResponse getTvDetails(String language, String tvId) {
@@ -74,6 +100,12 @@ public class TvService {
                 .toUriString();
         TvDetailsResponse tvDetails = restTemplate.getForObject(tvUrl, TvDetailsResponse.class);
         assert tvDetails != null;
+
+        // Date formatting
+        if (tvDetails.getFirstAirDate() != null && tvDetails.getNextEpisodeToAir() != null) {
+            tvDetails.setFirstAirDate(AppUtils.dateFormatter(tvDetails.getFirstAirDate(), language));
+            tvDetails.setNextEpisodeToAir(AppUtils.dateFormatter(tvDetails.getNextEpisodeToAir(), language));
+        }
 
         // Videos request
         String videosUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/videos")
