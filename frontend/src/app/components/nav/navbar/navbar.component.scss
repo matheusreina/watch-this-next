@@ -1,0 +1,83 @@
+@import "../../../../variables.scss";
+
+.navbar {
+  background-color: $bg-color-1;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+
+  .navbar-logo {
+    a {
+      img {
+        width: 150px;
+      }
+    }
+
+    .navbar-toggler {
+      background: none;
+      border: none;
+      color: #fff;
+      display: none;
+      cursor: pointer;
+
+      .navbar-toggler-icon {
+        width: 25px;
+        height: 2px;
+        background-color: #fff;
+        display: block;
+        position: relative;
+        transition: 0.3s;
+
+        &::before,
+        &::after {
+          content: "";
+          width: 25px;
+          height: 2px;
+          background-color: #fff;
+          display: block;
+          position: absolute;
+          transition: 0.3s;
+        }
+
+        &::before {
+          top: -8px;
+        }
+
+        &::after {
+          bottom: -8px;
+        }
+      }
+    }
+  }
+
+  .navbar-menu {
+    display: flex;
+    list-style: none;
+    text-transform: uppercase;
+    gap: 30px;
+  }
+}
+
+// Responsive Styles
+@media (max-width: 768px) {
+  .navbar {
+    .navbar-toggler {
+      display: block;
+    }
+
+    .navbar-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #333;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+
+      &.active {
+        display: flex;
+      }
+    }
+  }
+}
