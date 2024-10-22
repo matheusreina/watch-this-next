@@ -8,7 +8,7 @@
     </button>
   </div>
   <ul class="navbar-menu" id="navbar-menu">
-    <li class="navbar-item movie-item">
+    <li class="navbar-item">
       <a [routerLink]="['/:lang/home', currentLang]">home</a>
     </li>
     <li class="navbar-item movie-item">
@@ -16,6 +16,9 @@
     </li>
     <li class="navbar-item tv-item"><a [routerLink]="">tv</a></li>
     <li class="navbar-item popular-item"><a [routerLink]="">popular</a></li>
-    <li class="navbar-item login-item"><a [routerLink]="">login</a></li>
+    <li class="navbar-item signup-item"><a [routerLink]="">signup</a></li>
+    <li class="">
+      <app-dropdown />
+    </li>
   </ul>
 </nav>

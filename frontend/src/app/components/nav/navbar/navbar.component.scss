@@ -2,14 +2,15 @@
 
 .navbar {
   background-color: $bg-color-1;
-  padding: 1rem;
+  // padding: 1rem 2.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 
   .navbar-logo {
     a {
       img {
-        width: 150px;
+        width: 120px;
       }
     }
 
@@ -53,8 +54,29 @@
   .navbar-menu {
     display: flex;
     list-style: none;
-    text-transform: uppercase;
-    gap: 30px;
+    text-transform: capitalize;
+    font-weight: 600;
+    margin: 10px 0;
+    gap: 10px;
+    width: 350px;
+
+    .navbar-item {
+      padding: 0.8rem;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 14px;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      &:hover {
+        color: $yellow;
+        transition: color 0.2s ease-in-out;
+      }
+    }
   }
 }
 

@@ -1,0 +1,10 @@
+<li class="dropdown" [class.open]="isDropdownOpen">
+  <button class="dropdown-toggle" (click)="toggleDropdown()">
+    <fa-icon [icon]="faGlobe"></fa-icon>
+  </button>
+
+  <div class="dropdown-menu">
+    <a (click)="setUserLanguage('en')">English</a>
+    <a (click)="setUserLanguage('pt')">Português</a>
+  </div>
+</li>

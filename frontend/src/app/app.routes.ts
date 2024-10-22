@@ -9,7 +9,7 @@ import { TvDetailsComponent } from './pages/tv-details/tv-details.component';
 import { PersonDetailsComponent } from './pages/person-details/person-details.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: ':lang/home', pathMatch: 'full' },
+  { path: '', redirectTo: 'en/home', pathMatch: 'full' },
   { path: ':lang/home', component: HomeComponent },
   { path: ':lang/movie/top_rated', component: MovieTopComponent },
   { path: ':lang/movie/popular', component: MoviePopularComponent },
