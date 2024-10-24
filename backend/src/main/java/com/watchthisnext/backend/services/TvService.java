@@ -29,12 +29,8 @@ public class TvService {
     }
 
     public TvResponse getPopularTvs(String language) {
-        String fullLanguage;
-        if (language.equals("pt")) {
-            fullLanguage = "pt-BR";
-        } else {
-            fullLanguage = "en-US";
-        }
+        String fullLanguage = language.equals("pt") ? "pt-BR" : "en-US";
+
         String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/popular")
                 .queryParam("api_key", API_KEY)
                 .queryParam("language", fullLanguage)

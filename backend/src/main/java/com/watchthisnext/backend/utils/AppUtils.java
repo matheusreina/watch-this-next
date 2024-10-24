@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 public class AppUtils {
     public static String dateFormatter(String date, String language) {
-//        if (date == null) return null;
-
         String[] dateArray;
         String newDate;
 

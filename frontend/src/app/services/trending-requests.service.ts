@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class SeasonRequestsService {
+export class TrendingRequestsService {
   private readonly apiUrl = 'http://localhost:8080/';
 
   constructor(
@@ -14,15 +14,13 @@ export class SeasonRequestsService {
     private languageService: LanguageService
   ) {}
 
-  getSeasons(id: string): Observable<any> {
+  getTendingByDay(): Observable<any> {
     const language = this.languageService.getLanguage;
-    return this.http.get(`${this.apiUrl}${language}/tv/${id}/seasons`);
+    return this.http.get(`${language}/trending/all/day`);
   }
 
-  getEpisodes(id: string, seasonNumber: number): Observable<any> {
+  getTendingByWeek(): Observable<any> {
     const language = this.languageService.getLanguage;
-    return this.http.get(
-      `${this.apiUrl}${language}/tv/${id}/season-${seasonNumber}`
-    );
+    return this.http.get(`${language}/trending/all/week`);
   }
 }
