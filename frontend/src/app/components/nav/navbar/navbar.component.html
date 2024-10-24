@@ -9,14 +9,14 @@
   </div>
   <ul class="navbar-menu" id="navbar-menu">
     <li class="navbar-item">
-      <a [routerLink]="['/:lang/home', currentLang]">home</a>
+      <a [routerLink]="['/', currentLang, 'home']">home</a>
     </li>
     <li class="navbar-item movie-item">
-      <a [routerLink]="[':lang/movie/popular', currentLang]">movies</a>
+      <a [routerLink]="['/', currentLang, 'movie', 'popular']">movies</a>
     </li>
-    <li class="navbar-item tv-item"><a [routerLink]="">tv</a></li>
-    <li class="navbar-item popular-item"><a [routerLink]="">popular</a></li>
-    <li class="navbar-item signup-item"><a [routerLink]="">signup</a></li>
+    <li class="navbar-item tv-item">
+      <a [routerLink]="['/', currentLang, 'tv', 'popular']">tv</a>
+    </li>
     <li class="">
       <app-dropdown />
     </li>

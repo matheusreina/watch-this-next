@@ -9,7 +9,11 @@ import { TvDetailsComponent } from './pages/tv-details/tv-details.component';
 import { PersonDetailsComponent } from './pages/person-details/person-details.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'en/home', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: navigator.language.startsWith('pt') ? '/pt/home' : '/en/home',
+    pathMatch: 'full',
+  },
   { path: ':lang/home', component: HomeComponent },
   { path: ':lang/movie/top_rated', component: MovieTopComponent },
   { path: ':lang/movie/popular', component: MoviePopularComponent },
@@ -18,4 +22,9 @@ export const routes: Routes = [
   { path: ':lang/tv/popular', component: TvPopularComponent },
   { path: ':lang/tv/:id', component: TvDetailsComponent },
   { path: ':lang/person/:id', component: PersonDetailsComponent },
+  {
+    // This 'path' will redirect to any route the user types that does not match with any actual routes bellow:
+    path: '**',
+    redirectTo: navigator.language.startsWith('pt') ? '/pt/home' : '/en/home',
+  },
 ];

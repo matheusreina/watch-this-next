@@ -28,8 +28,8 @@ export class DropdownComponent {
 
   setUserLanguage(lang: string) {
     this.userLanguage = lang;
-    this.isDropdownOpen = false;
     this.switchLanguage(lang);
+    this.isDropdownOpen = false;
   }
 
   @HostListener('document:click', ['$event'])
@@ -41,10 +41,7 @@ export class DropdownComponent {
 
   switchLanguage(lang: string) {
     this.languageService.setLanguage(lang);
-    const currentUrl = this.router.url.split('/')[1];
-    //.slice(1);
-    // .join('/');
-    console.log(currentUrl);
-    //this.router.navigate([`/${lang}/${currentUrl}`]);
+    const currentUrl = this.router.url.split('/').slice(2).join('/');
+    this.router.navigate([`/${lang}/${currentUrl}`]);
   }
 }

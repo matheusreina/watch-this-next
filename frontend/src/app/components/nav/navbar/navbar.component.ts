@@ -1,3 +1,4 @@
+import { LanguageService } from './../../../services/language.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -15,11 +16,14 @@ export class NavbarComponent implements OnInit {
   faGlobe = faGlobe;
   currentLang: string = 'en'; // Default language
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private languageService: LanguageService
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.currentLang = params.get('lang') || 'en';
+    this.languageService.currentLanguage$.subscribe((lang) => {
+      this.currentLang = lang;
     });
   }
 }
