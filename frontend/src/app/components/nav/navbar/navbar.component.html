@@ -9,13 +9,25 @@
   </div>
   <ul class="navbar-menu" id="navbar-menu">
     <li class="navbar-item">
-      <a [routerLink]="['/', currentLang, 'home']">home</a>
+      <a
+        [routerLink]="['/', currentLang, 'home']"
+        routerLinkActive="active-link"
+        >home</a
+      >
     </li>
     <li class="navbar-item movie-item">
-      <a [routerLink]="['/', currentLang, 'movie', 'popular']">movies</a>
+      <a
+        [routerLink]="['/', currentLang, 'movie', 'popular']"
+        routerLinkActive="active-link"
+        >movies</a
+      >
     </li>
     <li class="navbar-item tv-item">
-      <a [routerLink]="['/', currentLang, 'tv', 'popular']">tv</a>
+      <a
+        [routerLink]="['/', currentLang, 'tv', 'popular']"
+        routerLinkActive="active-link"
+        >tv</a
+      >
     </li>
     <li class="">
       <app-dropdown />

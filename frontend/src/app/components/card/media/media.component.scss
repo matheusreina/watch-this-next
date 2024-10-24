@@ -1,0 +1,54 @@
+@import "../../../../variables.scss";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: $bg-color-2;
+  color: $font-color;
+  position: relative;
+  width: 100px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.5);
+
+  .poster {
+    img {
+      width: 100%;
+      overflow: hidden;
+      // border-radius: 5px 5px 0 0;
+    }
+
+    .vote-container {
+      position: absolute;
+      background-color: $font-color;
+      width: 70%;
+      bottom: -5px;
+      text-align: center;
+      border-radius: 0 5px 5px 0;
+      box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.5);
+
+      .vote-average {
+        color: $yellow;
+        font-size: 10px;
+      }
+    }
+  }
+
+  .info {
+    padding: 2rem 1rem;
+    text-decoration: none;
+    text-align: start;
+    .media-title {
+      color: $font-color;
+      font-weight: 500;
+
+      &:hover {
+        color: $salmon;
+      }
+    }
+
+    .release-date {
+      color: $font-hover;
+      font-weight: 300;
+    }
+  }
+}

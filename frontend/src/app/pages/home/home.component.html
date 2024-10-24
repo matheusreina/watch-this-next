@@ -1,4 +1,19 @@
 <div class="container">
-  <button>discover popular shows</button>
-  <button>discover the best movies</button>
+  <div class="trending">
+    <div class="title-box">
+      <h1 class="calling-text">trending this week! 🔥</h1>
+      <button>today</button>
+      <button>this week</button>
+    </div>
+    <div class="media-box">
+      @for (item of trendingList; track item.id) {
+      <app-media
+        [title]="item.title"
+        [posterSrc]="item.poster_path"
+        [releaseDate]="item.release_date"
+        [vote]="item.vote_average"
+      />
+      }
+    </div>
+  </div>
 </div>

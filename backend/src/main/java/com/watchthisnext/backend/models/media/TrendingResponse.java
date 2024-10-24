@@ -40,6 +40,9 @@ public class TrendingResponse {
         @JsonProperty("poster_path")
         private String posterPath;
 
+        @JsonProperty("media_type")
+        private String mediaType;
+
         // Getters & Setters
         public String getId() {
             return id;
@@ -76,6 +79,12 @@ public class TrendingResponse {
         }
         public void setPosterPath(String posterPath) {
             this.posterPath = AppUtils.imageLinkFormatter(posterPath);;
+        }
+        public String getMediaType() {
+            return mediaType;
+        }
+        public void setMediaType(String mediaType) {
+            this.mediaType = mediaType;
         }
     }
 }
