@@ -1,12 +1,18 @@
 <div class="card">
   <div class="poster">
-    <a [routerLink]=""><img src="{{ posterSrc }}" alt="" /></a>
+    <a [routerLink]="['/', currentLang, mediaType, mediaId]"
+      ><img src="{{ posterSrc }}" alt=""
+    /></a>
     <div class="vote-container">
       <span class="vote-average">{{ vote }}</span>
     </div>
   </div>
   <div class="info">
-    <a [routerLink]="" class="media-title">{{ title }}</a>
+    <a
+      [routerLink]="['/', currentLang, mediaType, mediaId]"
+      class="media-title"
+      >{{ title }}</a
+    >
     <p class="release-date">{{ releaseDate }}</p>
   </div>
 </div>

@@ -15,7 +15,7 @@ export class PersonRequestsService {
   ) {}
 
   getPersonDetails(id: string): Observable<any> {
-    const language = this.languageService.getLanguage;
+    const language = this.languageService.getLanguage();
     return this.http.get(`${this.apiUrl}${language}/person/${id}`);
   }
 }

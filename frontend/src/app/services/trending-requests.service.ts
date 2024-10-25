@@ -15,12 +15,12 @@ export class TrendingRequestsService {
   ) {}
 
   getTendingByDay(): Observable<any> {
-    const language = this.languageService.getLanguage;
-    return this.http.get(`${language}/trending/all/day`);
+    const language = this.languageService.getLanguage();
+    return this.http.get(`${this.apiUrl}${language}/trending/all/day`);
   }
 
   getTendingByWeek(): Observable<any> {
-    const language = this.languageService.getLanguage;
-    return this.http.get(`${language}/trending/all/week`);
+    const language = this.languageService.getLanguage();
+    return this.http.get(`${this.apiUrl}${language}/trending/all/week`);
   }
 }

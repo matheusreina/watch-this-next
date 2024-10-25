@@ -15,12 +15,12 @@ export class SeasonRequestsService {
   ) {}
 
   getSeasons(id: string): Observable<any> {
-    const language = this.languageService.getLanguage;
+    const language = this.languageService.getLanguage();
     return this.http.get(`${this.apiUrl}${language}/tv/${id}/seasons`);
   }
 
   getEpisodes(id: string, seasonNumber: number): Observable<any> {
-    const language = this.languageService.getLanguage;
+    const language = this.languageService.getLanguage();
     return this.http.get(
       `${this.apiUrl}${language}/tv/${id}/season-${seasonNumber}`
     );

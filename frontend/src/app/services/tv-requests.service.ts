@@ -15,17 +15,17 @@ export class TvRequestsService {
   ) {}
 
   getTopTv(): Observable<any> {
-    const language = this.languageService.getLanguage;
+    const language = this.languageService.getLanguage();
     return this.http.get(`${this.apiUrl}${language}/tv/top_rated`);
   }
 
   getPopularTv(): Observable<any> {
-    const language = this.languageService.getLanguage;
+    const language = this.languageService.getLanguage();
     return this.http.get(`${this.apiUrl}${language}/tv/popular`);
   }
 
   getTvDetails(id: string): Observable<any> {
-    const language = this.languageService.getLanguage;
+    const language = this.languageService.getLanguage();
     return this.http.get(`${this.apiUrl}${language}/tv/${id}`);
   }
 }

@@ -1,13 +1,15 @@
 <div class="container">
   <div class="trending">
     <div class="title-box">
-      <h1 class="calling-text">trending this week! 🔥</h1>
-      <button>today</button>
-      <button>this week</button>
+      <h1 class="calling-text">trending {{ timePeriod }}! 🔥</h1>
+      <button (click)="changeToDay()">today</button>
+      <button (click)="changeToWeek()">this week</button>
     </div>
     <div class="media-box">
       @for (item of trendingList; track item.id) {
       <app-media
+        [mediaId]="item.media_type"
+        mediaId="item.id"
         [title]="item.title"
         [posterSrc]="item.poster_path"
         [releaseDate]="item.release_date"

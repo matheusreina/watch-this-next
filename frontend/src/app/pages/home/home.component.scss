@@ -1,0 +1,11 @@
+.container {
+  margin-left: 3rem;
+  .title-box {
+    margin: 1rem 0;
+  }
+
+  .media-box {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
