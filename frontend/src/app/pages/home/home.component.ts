@@ -3,11 +3,12 @@ import { LanguageService } from '../../services/language.service';
 import { TrendingRequestsService } from '../../services/trending-requests.service';
 import { MediaComponent } from '../../components/card/media/media.component';
 import { ComponentReloadService } from '../../services/component-reload.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MediaComponent],
+  imports: [MediaComponent, NgClass],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -47,6 +48,7 @@ export class HomeComponent implements OnInit {
     });
     this.currentTimePeriod = 'this week';
     this.timePeriod = 'week';
+    this.toggleActive();
   }
 
   changeToDay(): void {
@@ -55,5 +57,14 @@ export class HomeComponent implements OnInit {
     });
     this.currentTimePeriod = 'today';
     this.timePeriod = 'day';
+    this.toggleActive();
+  }
+
+  toggleActive(): boolean {
+    if (this.timePeriod === 'day') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

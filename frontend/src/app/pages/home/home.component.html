@@ -1,9 +1,25 @@
 <div class="container">
   <div class="trending">
     <div class="title-box">
-      <h1 class="calling-text">trending {{ currentTimePeriod }}! 🔥</h1>
-      <button class="call-button" (click)="changeToDay()">today</button>
-      <button class="call-button" (click)="changeToWeek()">this week</button>
+      <h1 class="calling-text">trending</h1>
+      <div class="btn-container">
+        <button
+          id="day"
+          class="call-button"
+          [class.active]="toggleActive()"
+          (click)="changeToDay()"
+        >
+          today
+        </button>
+        <button
+          id="week"
+          class="call-button"
+          [class.active]="!toggleActive()"
+          (click)="changeToWeek()"
+        >
+          this week
+        </button>
+      </div>
     </div>
     <div class="media-box">
       @for (item of trendingList; track item.id) {
