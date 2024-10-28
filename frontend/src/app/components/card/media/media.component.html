@@ -1,18 +1,24 @@
 <div class="card">
-  <div class="poster">
-    <a [routerLink]="['/', currentLang, mediaType, mediaId]"
-      ><img src="{{ posterSrc }}" alt=""
-    /></a>
-    <div class="vote-container">
-      <span class="vote-average">{{ vote }}</span>
+  <div class="card-top">
+    <div class="score">
+      <fa-icon class="vote-icon" [icon]="faStar"></fa-icon>
+      <span class="vote-number">{{ vote }}</span>
+    </div>
+    <div class="actions">
+      <fa-icon class="bookmark-icon" [icon]="faBookmark"></fa-icon>
     </div>
   </div>
-  <div class="info">
-    <a
-      [routerLink]="['/', currentLang, mediaType, mediaId]"
-      class="media-title"
-      >{{ title }}</a
-    >
-    <p class="release-date">{{ releaseDate }}</p>
+  <div class="img-container">
+    <div class="img">
+      <a [routerLink]="['/', currentLang, mediaType, mediaId]">
+        <img src="{{ posterSrc }}"
+      /></a>
+    </div>
+    <a [routerLink]="['/', currentLang, mediaType, mediaId]">
+      <div class="description">
+        <span class="title"> {{ title }} </span>
+        <p class="date">{{ releaseDate }}</p>
+      </div>
+    </a>
   </div>
 </div>

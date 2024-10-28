@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 import { TrendingRequestsService } from '../../services/trending-requests.service';
 import { MediaComponent } from '../../components/card/media/media.component';
-import { MovieRequestsService } from '../../services/movie-requests.service';
+import { ComponentReloadService } from '../../services/component-reload.service';
 
 @Component({
   selector: 'app-home',
@@ -15,33 +14,46 @@ import { MovieRequestsService } from '../../services/movie-requests.service';
 export class HomeComponent implements OnInit {
   trendingList: any[] = [];
   currentLang: string = 'en'; // Default language
+  timePeriod = 'day';
 
   // Text Values
-  timePeriod: string = '';
+  currentTimePeriod: string = 'today';
 
   constructor(
     private languageService: LanguageService,
-    private trendingService: TrendingRequestsService
+    private trendingService: TrendingRequestsService,
+    private reloadService: ComponentReloadService
   ) {}
 
   ngOnInit(): void {
     this.languageService.currentLanguage$.subscribe((lang) => {
       this.currentLang = lang;
     });
+    this.reloadService.reload$.subscribe(() => this.reloadComponent());
     this.changeToDay();
+  }
+
+  reloadComponent(): void {
+    if (this.timePeriod === 'day') {
+      this.changeToDay();
+    } else {
+      this.changeToWeek();
+    }
   }
 
   changeToWeek(): void {
     this.trendingService.getTendingByWeek().subscribe((data) => {
       this.trendingList = data.results;
     });
-    this.timePeriod = 'this week';
+    this.currentTimePeriod = 'this week';
+    this.timePeriod = 'week';
   }
 
   changeToDay(): void {
     this.trendingService.getTendingByDay().subscribe((data) => {
       this.trendingList = data.results;
     });
-    this.timePeriod = 'today';
+    this.currentTimePeriod = 'today';
+    this.timePeriod = 'day';
   }
 }
