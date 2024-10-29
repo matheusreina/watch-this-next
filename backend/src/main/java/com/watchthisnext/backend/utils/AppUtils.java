@@ -1,7 +1,9 @@
 package com.watchthisnext.backend.utils;
 
 
-import java.util.Arrays;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class AppUtils {
     public static String dateFormatter(String date, String language) {
@@ -56,8 +58,10 @@ public class AppUtils {
         return newDate;
     }
 
-    public static double voteAverageFormatter(double voteAverage) {
-        return (Math.round((voteAverage/2) * 10.0)/ 10.0);
+    public static String voteAverageFormatter(double voteAverage) {
+        Locale.setDefault(Locale.of("en", "US"));
+        NumberFormat formatter = new DecimalFormat("#0.0");
+        return formatter.format((Math.round((voteAverage/2) * 10.0)/ 10.0));
     }
 
     public static String imageLinkFormatter(String imageSrc) {

@@ -35,8 +35,9 @@ public class TrendingService {
             List<TrendingResponse.Media> trendMedia = response.getResults();
 
             for(TrendingResponse.Media media: trendMedia) {
-                String date = media.getReleaseDate();
-                media.setReleaseDate(AppUtils.dateFormatter(date, language));
+                String date = media.getFirstAirDate() != null ? media.getFirstAirDate() : media.getReleaseDate();
+
+                media.setDate(AppUtils.dateFormatter(date, language));
                 if (media.getTitle() == null) {
                     media.setTitle(media.getName());
                 }

@@ -48,7 +48,7 @@ public class TvResponse {
         private String firstAirDate;
 
         @JsonProperty("vote_average")
-        private double voteAverage;
+        private String voteAverage;
 
         // Getters & Setters
         public String getId() {
@@ -100,7 +100,7 @@ public class TvResponse {
         public void setFirstAirDate(String firstAirDate) {
             this.firstAirDate = firstAirDate;
         }
-        public double getVoteAverage() {
+        public String getVoteAverage() {
             return voteAverage;
         }
         public void setVoteAverage(double voteAverage) {

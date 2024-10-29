@@ -19,7 +19,7 @@ public class SeasonsResponse {
     private String airDate;
 
     @JsonProperty("vote_average")
-    private double voteAverage;
+    private String voteAverage;
 
     @JsonProperty("poster_path")
     private String posterPath;
@@ -56,7 +56,7 @@ public class SeasonsResponse {
     public void setAirDate(String airDate) {
         this.airDate = airDate;
     }
-    public double getVoteAverage() {
+    public String getVoteAverage() {
         return voteAverage;
     }
     public void setVoteAverage(double voteAverage) {

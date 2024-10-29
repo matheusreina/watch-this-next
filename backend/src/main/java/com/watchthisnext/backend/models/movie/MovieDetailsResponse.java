@@ -28,7 +28,7 @@ public class MovieDetailsResponse {
     private String posterPath;
 
     @JsonProperty("vote_average")
-    private double voteAverage;
+    private String voteAverage;
 
     @JsonProperty("release_date")
     private String releaseDate;
@@ -105,7 +105,7 @@ public class MovieDetailsResponse {
     public void setPosterPath(String posterPath) {
         this.posterPath = AppUtils.imageLinkFormatter(posterPath);
     }
-    public double getVoteAverage() {
+    public String getVoteAverage() {
         return voteAverage;
     }
     public void setVoteAverage(double voteAverage) {

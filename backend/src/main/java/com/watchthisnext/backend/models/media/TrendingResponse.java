@@ -30,12 +30,16 @@ public class TrendingResponse {
         private String id;
         private String name;
         private String title;
+        private String date;
 
         @JsonProperty("release_date")
         private String releaseDate;
 
+        @JsonProperty("first_air_date")
+        private String firstAirDate;
+
         @JsonProperty("vote_average")
-        private double voteAverage;
+        private String voteAverage;
 
         @JsonProperty("poster_path")
         private String posterPath;
@@ -62,13 +66,25 @@ public class TrendingResponse {
         public void setTitle(String title) {
             this.title = title;
         }
+        public String getDate() {
+            return date;
+        }
+        public void setDate(String date) {
+            this.date = date;
+        }
         public String getReleaseDate() {
             return releaseDate;
         }
         public void setReleaseDate(String releaseDate) {
             this.releaseDate = releaseDate;
         }
-        public double getVoteAverage() {
+        public String getFirstAirDate() {
+            return firstAirDate;
+        }
+        public void setFirstAirDate(String firstAirDate) {
+            this.firstAirDate = firstAirDate;
+        }
+        public String getVoteAverage() {
             return voteAverage;
         }
         public void setVoteAverage(double voteAverage) {

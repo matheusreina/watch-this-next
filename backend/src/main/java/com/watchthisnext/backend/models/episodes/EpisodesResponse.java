@@ -24,7 +24,7 @@ public class EpisodesResponse {
     private String stillPath;
 
     @JsonProperty("vote_average")
-    private double voteAverage;
+    private String voteAverage;
 
     @JsonProperty("show_id")
     private String showId;
@@ -78,7 +78,7 @@ public class EpisodesResponse {
     public void setStillPath(String stillPath) {
         this.stillPath = AppUtils.imageLinkFormatter(stillPath);
     }
-    public double getVoteAverage() {
+    public String getVoteAverage() {
         return voteAverage;
     }
     public void setVoteAverage(double voteAverage) {
