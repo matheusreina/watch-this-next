@@ -17,15 +17,13 @@
     </li>
     <li class="navbar-item movie-item">
       <a
-        [routerLink]="['/', currentLang, 'movie', 'popular']"
+        [routerLink]="['/', currentLang, 'movie']"
         routerLinkActive="active-link"
         >movies</a
       >
     </li>
     <li class="navbar-item tv-item">
-      <a
-        [routerLink]="['/', currentLang, 'tv', 'popular']"
-        routerLinkActive="active-link"
+      <a [routerLink]="['/', currentLang, 'tv']" routerLinkActive="active-link"
         >tv</a
       >
     </li>

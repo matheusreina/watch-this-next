@@ -1,7 +1,7 @@
 <div class="container">
   <div class="trending">
     <div class="title-box">
-      <h1 class="calling-text">trending</h1>
+      <h1 class="calling-text">Trending</h1>
       <div class="btn-container">
         <button
           id="day"
@@ -9,7 +9,7 @@
           [class.active]="toggleActive()"
           (click)="changeToDay()"
         >
-          today
+          Today
         </button>
         <button
           id="week"
@@ -17,7 +17,7 @@
           [class.active]="!toggleActive()"
           (click)="changeToWeek()"
         >
-          this week
+          This Week
         </button>
       </div>
     </div>
@@ -25,7 +25,7 @@
       @for (item of trendingList; track item.id) {
       <app-media
         [mediaId]="item.media_type"
-        mediaId="item.id"
+        [mediaId]="item.id"
         [title]="item.title"
         [posterSrc]="item.poster_path"
         [date]="item.date"

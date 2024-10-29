@@ -18,16 +18,16 @@ export class MovieRequestsService {
     const language = this.languageService.getLanguage();
     console.log(language);
 
-    return this.http.get(`${this.apiUrl}${language}/movies/top_rated`);
+    return this.http.get(`${this.apiUrl}${language}/movie/top_rated`);
   }
 
   getPopularMovies(): Observable<any> {
     const language = this.languageService.getLanguage();
-    return this.http.get(`${this.apiUrl}${language}/movies/popular`);
+    return this.http.get(`${this.apiUrl}${language}/movie/popular`);
   }
 
   getMovieDetails(id: string): Observable<any> {
     const language = this.languageService.getLanguage();
-    return this.http.get(`${this.apiUrl}${language}/movies/${id}`);
+    return this.http.get(`${this.apiUrl}${language}/movie/${id}`);
   }
 }

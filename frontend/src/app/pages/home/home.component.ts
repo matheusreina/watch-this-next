@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
   timePeriod = 'day';
 
   // Text Values
-  currentTimePeriod: string = 'today';
 
   constructor(
     private languageService: LanguageService,
@@ -46,7 +45,6 @@ export class HomeComponent implements OnInit {
     this.trendingService.getTendingByWeek().subscribe((data) => {
       this.trendingList = data.results;
     });
-    this.currentTimePeriod = 'this week';
     this.timePeriod = 'week';
     this.toggleActive();
   }
@@ -55,7 +53,6 @@ export class HomeComponent implements OnInit {
     this.trendingService.getTendingByDay().subscribe((data) => {
       this.trendingList = data.results;
     });
-    this.currentTimePeriod = 'today';
     this.timePeriod = 'day';
     this.toggleActive();
   }

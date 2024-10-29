@@ -1,8 +1,36 @@
 <div class="container">
-  <div class="title-container"></div>
+  <div class="title-box">
+    <h1 class="calling-text first">Featuring</h1>
+    <div class="btn-container">
+      <button
+        id="day"
+        class="call-button"
+        [class.active]="toggleActive()"
+        (click)="getPopularList()"
+      >
+        Popular
+      </button>
+      <button
+        id="week"
+        class="call-button"
+        [class.active]="!toggleActive()"
+        (click)="getTopList()"
+      >
+        Top Rated
+      </button>
+    </div>
+    <h1 class="calling-text last">Movies</h1>
+  </div>
   <div class="media-box">
     @for (movie of movieList; track movie.id) {
-    <app-media />
+    <app-media
+      [mediaId]="movie.media_type"
+      [mediaId]="movie.id"
+      [title]="movie.title"
+      [posterSrc]="movie.poster_path"
+      [date]="movie.release_date"
+      [vote]="movie.vote_average"
+    />
     }
   </div>
 </div>
