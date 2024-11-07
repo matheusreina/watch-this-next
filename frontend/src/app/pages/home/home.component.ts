@@ -4,11 +4,12 @@ import { TrendingRequestsService } from '../../services/trending-requests.servic
 import { MediaComponent } from '../../components/card/media/media.component';
 import { ComponentReloadService } from '../../services/component-reload.service';
 import { NgClass } from '@angular/common';
+import { LoadingComponent } from '../../components/misc/loading/loading.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MediaComponent, NgClass],
+  imports: [MediaComponent, NgClass, LoadingComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
   trendingList: any[] = [];
   currentLang: string = 'en'; // Default language
   timePeriod = 'day';
+  loading: boolean = true;
 
   // Text Values
 
@@ -34,6 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   reloadComponent(): void {
+    this.loading = true;
     if (this.timePeriod === 'day') {
       this.changeToDay();
     } else {
@@ -46,6 +49,7 @@ export class HomeComponent implements OnInit {
       this.trendingList = data.results;
     });
     this.timePeriod = 'week';
+    this.loading = false;
     this.toggleActive();
   }
 
@@ -54,6 +58,7 @@ export class HomeComponent implements OnInit {
       this.trendingList = data.results;
     });
     this.timePeriod = 'day';
+    this.loading = false;
     this.toggleActive();
   }
 

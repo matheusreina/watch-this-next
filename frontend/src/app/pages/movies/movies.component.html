@@ -21,11 +21,16 @@
     </div>
     <h1 class="calling-text last">Movies</h1>
   </div>
+  @if (loading) {
+  <div class="loading-box">
+    <app-loading />
+  </div>
+  } @else {
   <div class="media-box">
     @for (movie of movieList; track movie.id) {
     <app-media
-      [mediaId]="movie.media_type"
       [mediaId]="movie.id"
+      [mediaType]="movie.media_type"
       [title]="movie.title"
       [posterSrc]="movie.poster_path"
       [date]="movie.release_date"
@@ -33,4 +38,5 @@
     />
     }
   </div>
+  }
 </div>

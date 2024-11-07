@@ -21,11 +21,16 @@
     </div>
     <h1 class="calling-text last">TV Shows</h1>
   </div>
+  @if (loading) {
+  <div class="loading-box">
+    <app-loading />
+  </div>
+  } @else {
   <div class="media-box">
     @for (tvShow of tvList; track tvShow.id) {
     <app-media
-      [mediaId]="tvShow.media_type"
       [mediaId]="tvShow.id"
+      [mediaType]="tvShow.media_type"
       [title]="tvShow.name"
       [posterSrc]="tvShow.poster_path"
       [date]="tvShow.first_air_date"
@@ -33,4 +38,5 @@
     />
     }
   </div>
+  }
 </div>

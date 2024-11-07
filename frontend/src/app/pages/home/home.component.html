@@ -21,11 +21,16 @@
         </button>
       </div>
     </div>
+    @if (loading) {
+    <div class="loading-box">
+      <app-loading />
+    </div>
+    } @else {
     <div class="media-box">
       @for (item of trendingList; track item.id) {
       <app-media
-        [mediaId]="item.media_type"
         [mediaId]="item.id"
+        [mediaType]="item.media_type"
         [title]="item.title"
         [posterSrc]="item.poster_path"
         [date]="item.date"
@@ -33,5 +38,6 @@
       />
       }
     </div>
+    }
   </div>
 </div>

@@ -1,8 +1,10 @@
 <div class="card">
   <div class="card-top">
     <div class="score">
-      <fa-icon class="vote-icon" [icon]="faStar"></fa-icon>
-      <span class="vote-number">{{ vote }}</span>
+      <a [routerLink]="['/', currentLang, mediaType, mediaId]">
+        <fa-icon class="vote-icon" [icon]="faStar"></fa-icon>
+        <span class="vote-number">{{ vote }}</span>
+      </a>
     </div>
     <div class="actions">
       <fa-icon class="bookmark-icon" [icon]="faBookmark"></fa-icon>

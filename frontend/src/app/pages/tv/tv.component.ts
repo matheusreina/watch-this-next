@@ -3,11 +3,13 @@ import { MediaComponent } from '../../components/card/media/media.component';
 import { TvRequestsService } from '../../services/tv-requests.service';
 import { LanguageService } from '../../services/language.service';
 import { ComponentReloadService } from '../../services/component-reload.service';
+import { LoadingComponent } from '../../components/misc/loading/loading.component';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tv',
   standalone: true,
-  imports: [MediaComponent],
+  imports: [MediaComponent, LoadingComponent],
   templateUrl: './tv.component.html',
   styleUrl: './tv.component.scss',
 })
@@ -15,6 +17,7 @@ export class TvComponent implements OnInit {
   tvList: any[] = [];
   currentLang: string = 'en'; // Default language
   pageSelected: string = 'popular';
+  loading: boolean = true;
 
   constructor(
     private languageService: LanguageService,
@@ -31,6 +34,7 @@ export class TvComponent implements OnInit {
   }
 
   reloadComponent(): void {
+    this.loading = true;
     if (this.pageSelected === 'popular') {
       this.getPopularList();
     } else {
@@ -43,6 +47,7 @@ export class TvComponent implements OnInit {
       this.tvList = data.results;
     });
     this.pageSelected = 'popular';
+    this.loading = false;
   }
 
   getTopList(): void {
@@ -50,6 +55,7 @@ export class TvComponent implements OnInit {
       this.tvList = data.results;
     });
     this.pageSelected = 'top rated';
+    this.loading = false;
   }
 
   toggleActive(): boolean {
