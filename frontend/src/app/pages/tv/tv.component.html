@@ -1,1 +1,36 @@
-<p>tv works!</p>
+<div class="container">
+  <div class="title-box">
+    <h1 class="calling-text first">Featuring</h1>
+    <div class="btn-container">
+      <button
+        id="day"
+        class="call-button"
+        [class.active]="toggleActive()"
+        (click)="getPopularList()"
+      >
+        Popular
+      </button>
+      <button
+        id="week"
+        class="call-button"
+        [class.active]="!toggleActive()"
+        (click)="getTopList()"
+      >
+        Top Rated
+      </button>
+    </div>
+    <h1 class="calling-text last">TV Shows</h1>
+  </div>
+  <div class="media-box">
+    @for (tvShow of tvList; track tvShow.id) {
+    <app-media
+      [mediaId]="tvShow.media_type"
+      [mediaId]="tvShow.id"
+      [title]="tvShow.name"
+      [posterSrc]="tvShow.poster_path"
+      [date]="tvShow.first_air_date"
+      [vote]="tvShow.vote_average"
+    />
+    }
+  </div>
+</div>

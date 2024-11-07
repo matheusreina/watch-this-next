@@ -14,7 +14,6 @@ import { MovieRequestsService } from '../../services/movie-requests.service';
 export class MoviesComponent implements OnInit {
   movieList: any[] = [];
   currentLang: string = 'en'; // Default language
-  timePeriod = 'day';
   pageSelected = 'popular';
 
   constructor(
@@ -28,6 +27,7 @@ export class MoviesComponent implements OnInit {
       this.currentLang = lang;
     });
     this.reloadService.reload$.subscribe(() => this.reloadComponent());
+    this.getPopularList();
   }
 
   reloadComponent(): void {
@@ -42,11 +42,21 @@ export class MoviesComponent implements OnInit {
     this.movieService.getPopularMovies().subscribe((data) => {
       this.movieList = data.results;
     });
+    this.pageSelected = 'popular';
   }
 
   getTopList(): void {
     this.movieService.getTopMovies().subscribe((data) => {
       this.movieList = data.results;
     });
+    this.pageSelected = 'top rated';
+  }
+
+  toggleActive(): boolean {
+    if (this.pageSelected === 'popular') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
