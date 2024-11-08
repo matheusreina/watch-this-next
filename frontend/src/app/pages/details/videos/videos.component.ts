@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { ComponentDisplayService } from '../../services/component-display.service';
+import { ComponentDisplayService } from '../../../services/component-display.service';
 
 @Component({
-  selector: 'app-person-details',
+  selector: 'app-videos',
   standalone: true,
   imports: [],
-  templateUrl: './person-details.component.html',
-  styleUrl: './person-details.component.css',
+  templateUrl: './videos.component.html',
+  styleUrl: './videos.component.css',
 })
-export class PersonDetailsComponent {
+export class VideosComponent {
   @Input() id!: string;
 
   constructor(private displayService: ComponentDisplayService) {}
