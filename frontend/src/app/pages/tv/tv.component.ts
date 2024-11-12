@@ -46,6 +46,7 @@ export class TvComponent implements OnInit {
     this.tvService.getPopularTv().subscribe((data) => {
       this.tvList = data.results;
     });
+
     this.pageSelected = 'popular';
     this.loading = false;
   }

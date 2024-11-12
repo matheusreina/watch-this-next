@@ -20,9 +20,9 @@ export class MediaComponent implements OnInit {
   @Input() posterSrc: string = '';
   @Input() vote: number = 0;
   @Input() title: string = '';
-  @Input() date = '';
-  @Input() mediaId = '';
-  @Input() mediaType = '';
+  @Input() date: string = '';
+  @Input() mediaId: string = '';
+  @Input() mediaType: string = '';
 
   currentLang: string = 'en'; // Default language
 

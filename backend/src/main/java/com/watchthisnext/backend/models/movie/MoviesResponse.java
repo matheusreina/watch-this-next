@@ -31,6 +31,9 @@ public class MoviesResponse {
         private String title;
         private String overview;
 
+        @JsonProperty("media_type")
+        private String mediaType;
+
         @JsonProperty("genre_ids")
         private String[] genreIds;
 
@@ -58,6 +61,12 @@ public class MoviesResponse {
         }
         public void setTitle(String title) {
             this.title = title;
+        }
+        public String getMediaType() {
+            return mediaType;
+        }
+        public void setMediaType(String mediaType) {
+            this.mediaType = mediaType;
         }
         public String getOverview() {
             return overview;

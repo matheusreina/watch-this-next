@@ -1,17 +1,33 @@
 <div class="container">
   <div class="sub-navbar">
     <ul class="sub-navbar-items">
-      <li class="item"><a>Overview</a></li>
-      <li class="item"><a>Images</a></li>
-      <li class="item"><a>Videos</a></li>
-      <li class="item"><a>Cast & Crew</a></li>
+      <li class="item">
+        <button (click)="toggleComponent('overview')">Overview</button>
+      </li>
+      <li class="item">
+        <button (click)="toggleComponent('images')">Images</button>
+      </li>
+      <li class="item">
+        <button (click)="toggleComponent('videos')">Videos</button>
+      </li>
+      <li class="item">
+        <button (click)="toggleComponent('castCrew')">Cast & Crew</button>
+      </li>
     </ul>
   </div>
   <div class="media-container">
+    @if (overview) {
     <app-overview id="overview" />
+
+    } @else if (images) {
     <app-images id="images" />
+
+    } @else if (videos) {
     <app-videos id="videos" />
-    <!-- Montar um para mostrar o cast -->
-    <!-- <app-person-details id="person" /> -->
+
+    } @else if (castCrew) {
+    <app-cast-and-crew />
+
+    }
   </div>
 </div>

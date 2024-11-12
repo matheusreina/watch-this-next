@@ -1,1 +1,28 @@
-<p>overview works!</p>
+<div class="container">
+  @if (loading) {
+  <app-loading />
+  } @else {
+  <div class="main">
+    <div class="poster">
+      <img src="{{ data.poster_path }}" />
+    </div>
+    <div class="overview">
+      <div class="main-info">
+        <h1 class="title">{{ data.name }}</h1>
+        @for (genre of data.genres; track data.id) {
+        <h6 class="genres">{{ genre.name }}</h6>
+        }
+      </div>
+      <div class="score"></div>
+      <div class="overview">
+        <h3>Overview</h3>
+        <p class="overview-text"></p>
+      </div>
+    </div>
+  </div>
+  <div class="other-media">
+    <div class="images"></div>
+    <div class="videos"></div>
+  </div>
+  }
+</div>

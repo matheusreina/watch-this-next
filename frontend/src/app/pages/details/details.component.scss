@@ -10,12 +10,14 @@
     .sub-navbar-items {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 2rem;
 
       .item {
         list-style: none;
-        a {
-          text-decoration: none;
+        button {
+          background-color: inherit;
+          font-size: 16px;
+          border: none;
           color: $font-color;
           font-weight: 600;
           cursor: pointer;
@@ -23,7 +25,7 @@
         }
 
         &:hover {
-          a {
+          button {
             color: $salmon;
           }
         }

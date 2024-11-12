@@ -11,6 +11,10 @@ import com.watchthisnext.backend.utils.*;
 public class MovieDetailsResponse {
     private String id;
     private String title;
+
+    @JsonProperty("media_type")
+    private String mediaType;
+
     private String status;
     private String overview;
     private String runtime;
@@ -33,6 +37,8 @@ public class MovieDetailsResponse {
     @JsonProperty("release_date")
     private String releaseDate;
 
+    private String releaseYear;
+
     private Object[] genres;
 
     @JsonProperty("production_countries")
@@ -50,6 +56,12 @@ public class MovieDetailsResponse {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+    public String getMediaType() {
+        return mediaType;
+    }
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
     public String getStatus() {
         return status;
@@ -116,6 +128,12 @@ public class MovieDetailsResponse {
     }
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+    public String getReleaseYear() {
+        return releaseYear;
+    }
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
     }
     public Object[] getGenres() {
         return genres;

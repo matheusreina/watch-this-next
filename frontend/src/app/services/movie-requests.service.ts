@@ -16,8 +16,6 @@ export class MovieRequestsService {
 
   getTopMovies(): Observable<any> {
     const language = this.languageService.getLanguage();
-    console.log(language);
-
     return this.http.get(`${this.apiUrl}${language}/movie/top_rated`);
   }
 

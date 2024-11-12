@@ -45,10 +45,16 @@ public class MovieService {
             for (MoviesResponse.Movie movie : popularMovies) {
                 String date = movie.getReleaseDate();
                 movie.setReleaseDate(AppUtils.dateFormatter(date, language));
+
+                // Media Type
+                if (movie.getMediaType() == null){
+                    movie.setMediaType("movie");
+                }
             }
 
             results.setResults(popularMovies);
         }
+
         return results;
     }
 
@@ -73,6 +79,11 @@ public class MovieService {
             for (MoviesResponse.Movie movie : topMovies) {
                 String date = movie.getReleaseDate();
                 movie.setReleaseDate(AppUtils.dateFormatter(date, language));
+
+                // Media Type
+                if (movie.getMediaType() == null){
+                    movie.setMediaType("movie");
+                }
             }
 
             results.setResults(topMovies);
@@ -100,8 +111,14 @@ public class MovieService {
         MovieDetailsResponse movieDetails = restTemplate.getForObject(movieUrl, MovieDetailsResponse.class);
         assert movieDetails != null;
 
+        // Media Type
+        if (movieDetails.getMediaType() == null){
+            movieDetails.setMediaType("movie");
+        }
+
         // Date formatting
         if (movieDetails.getReleaseDate() != null) {
+            movieDetails.setReleaseYear(AppUtils.getReleaseYear(movieDetails.getReleaseDate()));
             movieDetails.setReleaseDate(AppUtils.dateFormatter(movieDetails.getReleaseDate(), language));
         }
 

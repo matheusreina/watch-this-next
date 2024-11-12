@@ -3,13 +3,12 @@ import { LanguageService } from '../../services/language.service';
 import { TrendingRequestsService } from '../../services/trending-requests.service';
 import { MediaComponent } from '../../components/card/media/media.component';
 import { ComponentReloadService } from '../../services/component-reload.service';
-import { NgClass } from '@angular/common';
 import { LoadingComponent } from '../../components/misc/loading/loading.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MediaComponent, NgClass, LoadingComponent],
+  imports: [MediaComponent, LoadingComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

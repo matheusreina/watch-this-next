@@ -10,6 +10,11 @@ body {
   color: #fafafa;
   font-family: "Montserrat", sans-serif;
 }
+button {
+  background-color: inherit;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+}
 
 p {
   font-family: "Prociono", serif;

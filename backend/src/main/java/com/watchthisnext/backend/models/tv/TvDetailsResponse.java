@@ -15,6 +15,9 @@ public class TvDetailsResponse {
     private String id;
     private String name;
 
+    @JsonProperty("media_type")
+    private String mediaType;
+
     @JsonProperty("original_name")
     private String originalName;
 
@@ -35,6 +38,8 @@ public class TvDetailsResponse {
 
     @JsonProperty("first_air_date")
     private String firstAirDate;
+
+    private String releaseYear;
 
     private List<Object> genres;
 
@@ -67,6 +72,12 @@ public class TvDetailsResponse {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public String getMediaType() {
+        return mediaType;
+    }
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
     public String getStatus() {
         return status;
@@ -127,6 +138,12 @@ public class TvDetailsResponse {
     }
     public void setFirstAirDate(String firstAirDate) {
         this.firstAirDate = firstAirDate;
+    }
+    public String getReleaseYear() {
+        return releaseYear;
+    }
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
     }
     public List<Object> getGenres() {
         return genres;

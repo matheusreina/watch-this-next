@@ -58,6 +58,25 @@ public class AppUtils {
         return newDate;
     }
 
+    public static String getReleaseYear(String date) {
+        String[] dateArray;
+        String newDate;
+
+        try {
+            if (date.length() > 10) {
+                newDate = date.substring(0, 10);
+            } else {
+                newDate = date;
+            }
+
+            dateArray = newDate.split("-");
+        } catch (Exception e) {
+            return null;
+        }
+
+        return dateArray[0];
+    }
+
     public static String voteAverageFormatter(double voteAverage) {
         Locale.setDefault(Locale.of("en", "US"));
         NumberFormat formatter = new DecimalFormat("#0.0");

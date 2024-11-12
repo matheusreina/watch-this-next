@@ -31,6 +31,8 @@ public class TvResponse {
         private String name;
         private String overview;
 
+        @JsonProperty("media_type")
+        private String mediaType;
 
         @JsonProperty("origin_country")
         private String[] originCountry;
@@ -63,13 +65,18 @@ public class TvResponse {
         public void setName(String name) {
             this.name = name;
         }
+        public String getMediaType() {
+            return mediaType;
+        }
+        public void setMediaType(String mediaType) {
+            this.mediaType = mediaType;
+        }
         public String getOverview() {
             return overview;
         }
         public void setOverview(String overview) {
             this.overview = overview;
         }
-
         public String[] getOriginCountry() {
             return originCountry;
         }
