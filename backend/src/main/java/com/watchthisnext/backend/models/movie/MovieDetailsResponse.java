@@ -11,6 +11,7 @@ import com.watchthisnext.backend.utils.*;
 public class MovieDetailsResponse {
     private String id;
     private String title;
+    private String name;
 
     @JsonProperty("media_type")
     private String mediaType;
@@ -56,6 +57,12 @@ public class MovieDetailsResponse {
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
     public String getMediaType() {
         return mediaType;

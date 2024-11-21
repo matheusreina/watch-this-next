@@ -16,6 +16,11 @@ button {
   font-family: "Montserrat", sans-serif;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 p {
   font-family: "Prociono", serif;
 }

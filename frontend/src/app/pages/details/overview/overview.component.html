@@ -1,22 +1,37 @@
 <div class="container">
   @if (loading) {
-  <app-loading />
+  <div class="loading">
+    <app-loading />
+  </div>
   } @else {
   <div class="main">
-    <div class="poster">
-      <img src="{{ data.poster_path }}" />
+    <div class="box-1">
+      <button class="expand-poster">
+        <img class="poster-image" src="{{ data.poster_path }}" />
+      </button>
     </div>
-    <div class="overview">
+    <div class="box-2">
       <div class="main-info">
-        <h1 class="title">{{ data.name }}</h1>
+        <h1 class="title">
+          {{ data.name }}
+          <span class="release-year">({{ data.releaseYear }})</span>
+        </h1>
         @for (genre of data.genres; track data.id) {
-        <h6 class="genres">{{ genre.name }}</h6>
+        <div class="genres">
+          <a href="">
+            <h5 class="genre">{{ genre.name }}</h5>
+          </a>
+        </div>
         }
       </div>
-      <div class="score"></div>
+      <div class="score">
+        <span>
+          {{ data.vote_average }}
+        </span>
+      </div>
       <div class="overview">
-        <h3>Overview</h3>
-        <p class="overview-text"></p>
+        <h2>Overview</h2>
+        <span>{{ data.overview }}</span>
       </div>
     </div>
   </div>

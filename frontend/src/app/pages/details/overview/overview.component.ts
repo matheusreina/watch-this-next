@@ -4,11 +4,12 @@ import { MovieRequestsService } from '../../../services/movie-requests.service';
 import { ComponentReloadService } from '../../../services/component-reload.service';
 import { LanguageService } from '../../../services/language.service';
 import { ActivatedRoute } from '@angular/router';
+import { LoadingComponent } from '../../../components/misc/loading/loading.component';
 
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [],
+  imports: [LoadingComponent],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss',
 })

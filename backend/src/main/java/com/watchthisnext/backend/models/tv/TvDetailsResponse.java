@@ -53,7 +53,10 @@ public class TvDetailsResponse {
     private boolean inProduction;
 
     @JsonProperty("next_episode_to_air")
-    private String nextEpisodeToAir;
+    private Episode nextEpisodeToAir;
+
+    @JsonProperty("last_episode_to_air")
+    private Episode lastEpisodeToAir;
 
     private List<SeasonsResponse> seasons;
 
@@ -169,11 +172,17 @@ public class TvDetailsResponse {
     public void setInProduction(boolean inProduction) {
         this.inProduction = inProduction;
     }
-    public String getNextEpisodeToAir() {
+    public Episode getNextEpisodeToAir() {
         return nextEpisodeToAir;
     }
-    public void setNextEpisodeToAir(String nextEpisodeToAir) {
+    public void setNextEpisodeToAir(Episode nextEpisodeToAir) {
         this.nextEpisodeToAir = nextEpisodeToAir;
+    }
+    public Episode getLastEpisodeToAir() {
+        return lastEpisodeToAir;
+    }
+    public void setLastEpisodeToAir(Episode lastEpisodeToAir) {
+        this.lastEpisodeToAir = lastEpisodeToAir;
     }
     public List<SeasonsResponse> getSeasons() {
         return seasons;
@@ -186,6 +195,108 @@ public class TvDetailsResponse {
     }
     public void setProductionCountries(List<Object> productionCountries) {
         this.productionCountries = productionCountries;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Episode {
+        private String id;
+        private String name;
+        private String overview;
+
+        @JsonProperty("vote_average")
+        private String voteAverage;
+
+        @JsonProperty("air_date")
+        private String airDate;
+
+        private String runtime;
+
+        @JsonProperty("season_number")
+        private String seasonNumber;
+
+        @JsonProperty("show_id")
+        private String showId;
+
+        @JsonProperty("still_path")
+        private String image;
+
+        // Getters & Setters
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getOverview() {
+            return overview;
+        }
+
+        public void setOverview(String overview) {
+            this.overview = overview;
+        }
+
+        public String getVoteAverage() {
+            return voteAverage;
+        }
+
+        public void setVoteAverage(double voteAverage) {
+            this.voteAverage = AppUtils.voteAverageFormatter(voteAverage);
+        }
+
+        public String getAirDate() {
+            return airDate;
+        }
+
+        public void setAirDate(String airDate) {
+            this.airDate = airDate;
+        }
+
+        public String getRuntime() {
+            return runtime;
+        }
+
+        public void setRuntime(String runtime) {
+            this.runtime = runtime;
+        }
+
+        public String getSeasonNumber() {
+            return seasonNumber;
+        }
+
+        public void setSeasonNumber(String seasonNumber) {
+            this.seasonNumber = seasonNumber;
+        }
+
+        public String getShowId() {
+            return showId;
+        }
+
+        public void setShowId(String showId) {
+            this.showId = showId;
+        }
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            if (image != null) {
+                this.image = AppUtils.imageLinkFormatter(image);
+            } else {
+            this.image = null;
+            }
+        }
     }
 
 }

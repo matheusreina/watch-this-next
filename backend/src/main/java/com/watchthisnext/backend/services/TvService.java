@@ -123,7 +123,11 @@ public class TvService {
             }
 
             if (tvDetails.getNextEpisodeToAir() != null) {
-                tvDetails.setNextEpisodeToAir(AppUtils.dateFormatter(tvDetails.getNextEpisodeToAir(), language));
+                tvDetails.getNextEpisodeToAir().setAirDate(AppUtils.dateFormatter(tvDetails.getNextEpisodeToAir().getAirDate(), language));
+            }
+
+            if (tvDetails.getLastEpisodeToAir() != null) {
+                tvDetails.getLastEpisodeToAir().setAirDate(AppUtils.dateFormatter(tvDetails.getLastEpisodeToAir().getAirDate(), language));
             }
 
             // Videos request

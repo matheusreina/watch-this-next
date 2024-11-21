@@ -1,1 +1,67 @@
 @import "../../../../variables.scss";
+
+.container {
+  width: 100%;
+
+  .loading {
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main {
+    padding: 2rem 0 1.2rem 10rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+    .box-1 {
+      width: 30%;
+      .expand-poster {
+        cursor: pointer;
+        .poster-image {
+          width: 300px;
+          border-radius: 8px;
+        }
+      }
+    }
+
+    .box-2 {
+      width: 70%;
+      margin-top: 4rem;
+
+      .main-info {
+        margin-bottom: 1rem;
+        .title {
+          font-size: 2.5rem;
+          .release-year {
+            color: $font-hover;
+            font-weight: 300;
+          }
+          .genres {
+            a {
+              .genre {
+                font-weight: 500;
+                &:hover {
+                  color: $font-hover;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .score {
+        margin-bottom: 1rem;
+      }
+      .overview {
+        width: 60%;
+
+        h2 {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}

@@ -122,6 +122,8 @@ public class MovieService {
             movieDetails.setReleaseDate(AppUtils.dateFormatter(movieDetails.getReleaseDate(), language));
         }
 
+        movieDetails.setName(movieDetails.getTitle());
+
         // Videos request
         String videosUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/" + movieId + "/videos")
                 .queryParam("api_key", API_KEY)

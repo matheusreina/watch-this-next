@@ -84,6 +84,6 @@ public class AppUtils {
     }
 
     public static String imageLinkFormatter(String imageSrc) {
-        return "https://image.tmdb.org/t/p/original" + imageSrc;
+        return "https://image.tmdb.org/t/p/w780" + imageSrc;
     }
 }
