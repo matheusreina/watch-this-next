@@ -122,7 +122,7 @@ public class TvDetailsResponse {
         return backdropPath;
     }
     public void setBackdropPath(String backdropPath) {
-        this.backdropPath = AppUtils.imageLinkFormatter(backdropPath);
+        this.backdropPath = AppUtils.imageLinkOriginalFormatter(backdropPath);
     }
     public String getPosterPath() {
         return posterPath;

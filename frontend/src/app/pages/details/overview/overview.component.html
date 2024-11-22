@@ -4,7 +4,7 @@
     <app-loading />
   </div>
   } @else {
-  <div class="main">
+  <div class="main" style="background-image: url('{{ data.backdrop_path }}');">
     <div class="box-1">
       <button class="expand-poster">
         <img class="poster-image" src="{{ data.poster_path }}" />
@@ -25,9 +25,8 @@
         }
       </div>
       <div class="score">
-        <span>
-          {{ data.vote_average }}
-        </span>
+        <fa-icon class="fa-icon" [icon]="faStar" />
+        <span> {{ data.vote_average }} / 5.0 </span>
       </div>
       <div class="overview">
         <h2>Overview</h2>

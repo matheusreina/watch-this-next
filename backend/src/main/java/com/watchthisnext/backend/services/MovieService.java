@@ -190,6 +190,15 @@ public class MovieService {
 
         movieDetails.setCredits(credits);
 
+        // Overview
+        if (movieDetails.getOverview().isEmpty()) {
+            if (language.equals("pt")) {
+                movieDetails.setOverview("Estamos sem uma sinopse no momento! :(");
+            } else {
+                movieDetails.setOverview("We don't have a overview yet! :(");
+            }
+        }
+
         return movieDetails;
     }
 

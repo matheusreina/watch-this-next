@@ -1,6 +1,5 @@
 package com.watchthisnext.backend.controllers;
 
-import com.watchthisnext.backend.models.episodes.EpisodesResponse;
 import com.watchthisnext.backend.models.episodes.SeasonsResponse;
 import com.watchthisnext.backend.services.SeasonsService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +16,8 @@ public class SeasonsController {
         this.seasonsService = seasonsService;
     }
 
-    @GetMapping("{language}/tv/{tvId}/seasons")
-    public List<SeasonsResponse> getSeasons(@PathVariable String language, @PathVariable String tvId) {
-        return seasonsService.getSeasons(language, tvId);
-    }
-
     @GetMapping("{language}/tv/{tvId}/season-{seasonNumber}")
-    public List<EpisodesResponse> getEpisodes(@PathVariable String language, @PathVariable String tvId, @PathVariable int seasonNumber) {
-        return seasonsService.getEpisodes(language, tvId, seasonNumber);
+    public SeasonsResponse getSeasons(@PathVariable String language, @PathVariable String tvId, @PathVariable int seasonNumber) {
+        return seasonsService.getSeasons(language, tvId, seasonNumber);
     }
 }

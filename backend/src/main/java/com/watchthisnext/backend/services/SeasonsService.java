@@ -2,16 +2,13 @@ package com.watchthisnext.backend.services;
 
 import com.watchthisnext.backend.models.episodes.EpisodesResponse;
 import com.watchthisnext.backend.models.episodes.SeasonsResponse;
-import com.watchthisnext.backend.models.tv.TvDetailsResponse;
 import com.watchthisnext.backend.utils.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class SeasonsService {
@@ -26,7 +23,7 @@ public class SeasonsService {
         this.restTemplate = restTemplate;
     }
 
-    public List<SeasonsResponse> getSeasons(String language, String tvId) {
+    public SeasonsResponse getSeasons(String language, String tvId, int seasonNumber) {
         String fullLanguage;
         if (language.equals("pt")) {
             fullLanguage = "pt-BR";
@@ -34,55 +31,32 @@ public class SeasonsService {
             fullLanguage = "en-US";
         }
 
-        String tvDetailsUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId)
-                .queryParam("api_key", API_KEY)
-                .queryParam("language", fullLanguage)
-                .toUriString();
-        TvDetailsResponse tvDetails = restTemplate.getForObject(tvDetailsUrl, TvDetailsResponse.class);
-
-        // Season & Episodes request
-        assert tvDetails != null;
-        List<SeasonsResponse> seasons = tvDetails.getSeasons();
-        List<SeasonsResponse> newSeasons = new ArrayList<>();
-        if (seasons != null) {
             String seasonUrl;
-            for (int i = 0; i < seasons.size(); i++) {
-                seasonUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/season/" + i)
-                        .queryParam("api_key", API_KEY)
-                        .queryParam("language", fullLanguage)
-                        .toUriString();
-                newSeasons.add(restTemplate.getForObject(seasonUrl, SeasonsResponse.class));
-            }
+            seasonUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/season/" + seasonNumber)
+                    .queryParam("api_key", API_KEY)
+                    .queryParam("language", fullLanguage)
+                    .toUriString();
+        SeasonsResponse season = restTemplate.getForObject(seasonUrl, SeasonsResponse.class);
 
-            // Date formatting
-            for (SeasonsResponse season : newSeasons) {
-                String seasonDate = season.getAirDate();
-                season.setAirDate(AppUtils.dateFormatter(seasonDate, language));
+        // Date formatting
+        assert season != null;
+        String seasonDate = season.getAirDate();
+        season.setAirDate(AppUtils.dateFormatter(seasonDate, language));
 
-                List<EpisodesResponse> episodes = season.getEpisodes();
-                for (EpisodesResponse episode: episodes) {
-                    String episodeDate = episode.getAirDate();
-                    episode.setAirDate(AppUtils.dateFormatter(episodeDate, language));
-                }
-                season.setEpisodes(episodes);
+        List<EpisodesResponse> episodes = season.getEpisodes();
+        for (EpisodesResponse episode: episodes) {
+            String episodeDate = episode.getAirDate();
+            episode.setAirDate(AppUtils.dateFormatter(episodeDate, language));
+        }
+        season.setEpisodes(episodes);
+
+        if (season.getOverview().isEmpty()) {
+            if (language.equals("pt")) {
+                season.setOverview("Estamos sem uma sinopse no momento! :(");
+            } else {
+                season.setOverview("We don't have a overview yet! :(");
             }
         }
-            return newSeasons;
-    }
-
-    public List<EpisodesResponse> getEpisodes(String language, String tvId, int seasonNumber) {
-        String fullLanguage;
-        if (language.equals("pt")) {
-            fullLanguage = "pt-BR";
-        } else {
-            fullLanguage = "en-US";
-        }
-
-        String seasonUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/season/" + seasonNumber)
-                .queryParam("api_key", API_KEY)
-                .queryParam("language", fullLanguage)
-                .toUriString();
-        return Objects.requireNonNull(restTemplate.getForObject(seasonUrl, SeasonsResponse.class)).getEpisodes();
-
+        return season;
     }
 }

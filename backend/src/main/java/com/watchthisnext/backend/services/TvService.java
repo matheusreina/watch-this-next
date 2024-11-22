@@ -196,23 +196,15 @@ public class TvService {
 
             tvDetails.setCredits(credits);
 
-            // Season & Episodes request
-            List<SeasonsResponse> seasons = tvDetails.getSeasons();
-            List<SeasonsResponse> newSeasons = new ArrayList<SeasonsResponse>();
-            if (seasons != null) {
-                String seasonUrl;
-                for (int i = 0; i < seasons.size(); i++) {
-                    seasonUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/tv/" + tvId + "/season/" + i)
-                            .queryParam("api_key", API_KEY)
-                            .queryParam("language", fullLanguage)
-                            .toUriString();
-                    newSeasons.add(restTemplate.getForObject(seasonUrl, SeasonsResponse.class));
-
+            // Overview
+            if (tvDetails.getOverview().isEmpty()) {
+                if (language.equals("pt")) {
+                    tvDetails.setOverview("Estamos sem uma sinopse no momento! :(");
+                } else {
+                    tvDetails.setOverview("We don't have a overview yet! :(");
                 }
-
-                tvDetails.setSeasons(newSeasons);
             }
 
-            return tvDetails;
+        return tvDetails;
     }
 }
