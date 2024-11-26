@@ -3,9 +3,12 @@ package com.watchthisnext.backend.models.movie;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.watchthisnext.backend.models.media.ImagesResponse;
+import com.watchthisnext.backend.models.media.RecommendationsResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
 import com.watchthisnext.backend.utils.*;
+
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieDetailsResponse {
@@ -44,6 +47,8 @@ public class MovieDetailsResponse {
 
     @JsonProperty("production_countries")
     private Object[] productionCountries;
+
+    private RecommendationsResponse recommendations;
 
     // Getters & Setters
     public String getId() {
@@ -153,5 +158,11 @@ public class MovieDetailsResponse {
     }
     public void setProductionCountries(Object[] productionCountries) {
         this.productionCountries = productionCountries;
+    }
+    public RecommendationsResponse getRecommendations() {
+        return recommendations;
+    }
+    public void setRecommendations(RecommendationsResponse recommendations) {
+        this.recommendations = recommendations;
     }
 }

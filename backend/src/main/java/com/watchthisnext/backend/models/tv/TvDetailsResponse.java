@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.watchthisnext.backend.models.episodes.SeasonsResponse;
 import com.watchthisnext.backend.models.media.ImagesResponse;
+import com.watchthisnext.backend.models.media.RecommendationsResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
 import com.watchthisnext.backend.utils.AppUtils;
@@ -62,6 +63,8 @@ public class TvDetailsResponse {
 
     @JsonProperty("production_countries")
     private List<Object> productionCountries;
+
+    private RecommendationsResponse recommendations;
 
     // Getters & Setters
     public String getId() {
@@ -195,6 +198,12 @@ public class TvDetailsResponse {
     }
     public void setProductionCountries(List<Object> productionCountries) {
         this.productionCountries = productionCountries;
+    }
+    public RecommendationsResponse getRecommendations() {
+        return recommendations;
+    }
+    public void setRecommendations(RecommendationsResponse recommendations) {
+        this.recommendations = recommendations;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)

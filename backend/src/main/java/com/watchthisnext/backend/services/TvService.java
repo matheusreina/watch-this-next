@@ -3,6 +3,7 @@ package com.watchthisnext.backend.services;
 import com.watchthisnext.backend.exceptions.ResourceNotFoundException;
 import com.watchthisnext.backend.models.episodes.SeasonsResponse;
 import com.watchthisnext.backend.models.media.ImagesResponse;
+import com.watchthisnext.backend.models.media.RecommendationsResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.person.CreditsResponse;
 import com.watchthisnext.backend.models.tv.TvDetailsResponse;
@@ -204,6 +205,17 @@ public class TvService {
                     tvDetails.setOverview("We don't have a overview yet! :(");
                 }
             }
+
+        // Recommendations
+        // Add a sorting method based on popularity
+        String recUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/" + tvId + "/recommendations")
+                .queryParam("api_key", API_KEY)
+                .queryParam("language", fullLanguage)
+                .queryParam("page", 1)
+                .toUriString();
+        RecommendationsResponse rec = restTemplate.getForObject(recUrl, RecommendationsResponse.class);
+
+        tvDetails.setRecommendations(rec);
 
         return tvDetails;
     }

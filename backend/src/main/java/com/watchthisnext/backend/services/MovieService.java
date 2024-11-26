@@ -1,6 +1,7 @@
 package com.watchthisnext.backend.services;
 
 import com.watchthisnext.backend.models.media.ImagesResponse;
+import com.watchthisnext.backend.models.media.RecommendationsResponse;
 import com.watchthisnext.backend.models.media.VideosResponse;
 import com.watchthisnext.backend.models.movie.MovieDetailsResponse;
 import com.watchthisnext.backend.models.movie.MoviesResponse;
@@ -198,6 +199,17 @@ public class MovieService {
                 movieDetails.setOverview("We don't have a overview yet! :(");
             }
         }
+
+        // Recommendations
+        // Add a sorting method based on popularity
+        String recUrl = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/movie/" + movieId + "/recommendations")
+                .queryParam("api_key", API_KEY)
+                .queryParam("language", fullLanguage)
+                .queryParam("page", 1)
+                .toUriString();
+        RecommendationsResponse rec = restTemplate.getForObject(recUrl, RecommendationsResponse.class);
+
+        movieDetails.setRecommendations(rec);
 
         return movieDetails;
     }
