@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -208,6 +209,19 @@ public class MovieService {
                 .queryParam("page", 1)
                 .toUriString();
         RecommendationsResponse rec = restTemplate.getForObject(recUrl, RecommendationsResponse.class);
+
+        if (rec != null) {
+            List<RecommendationsResponse.Recommendations> recResults = rec.getResults();
+
+            // Date formatting
+            for (RecommendationsResponse.Recommendations recItem : recResults) {
+                String date = recItem.getDate();
+                recItem.setReleasedYear(AppUtils.getReleaseYear(date));
+                recItem.setDate(AppUtils.dateFormatter(date, language));
+            }
+
+            rec.setResults(recResults);
+        }
 
         movieDetails.setRecommendations(rec);
 

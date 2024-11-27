@@ -29,7 +29,8 @@ public class RecommendationsResponse {
     public static class Recommendations{
         private String id;
         private String name;
-        private int popularity;
+        private String title;
+        private double popularity;
 
         @JsonProperty("media_type")
         private String mediaType;
@@ -39,6 +40,9 @@ public class RecommendationsResponse {
 
         @JsonProperty("first_air_date")
         private String date;
+
+        @JsonProperty("release_date")
+        private String releasedDate;
         private String releasedYear;
 
 
@@ -49,36 +53,54 @@ public class RecommendationsResponse {
         public void setId(String id) {
             this.id = id;
         }
+
         public String getName() {
             return name;
         }
         public void setName(String name) {
             this.name = name;
         }
-        public int getPopularity() {
+        public String getTitle() {
+            return this.name;
+        }
+        public void setTitle(String title) {
+            this.name = title;
+        }
+
+        public double getPopularity() {
             return popularity;
         }
-        public void setPopularity(int popularity) {
+        public void setPopularity(double popularity) {
             this.popularity = popularity;
         }
+
         public String getMediaType() {
             return mediaType;
         }
         public void setMediaType(String mediaType) {
             this.mediaType = mediaType;
         }
+
         public String getPoster() {
             return poster;
         }
         public void setPoster(String poster) {
             this.poster = AppUtils.imageLinkFormatter(poster);
         }
+
         public String getDate() {
             return date;
         }
         public void setDate(String date) {
             this.date = date;
         }
+        public String getReleasedDate() {
+            return this.date;
+        }
+        public void setReleasedDate(String releasedDate) {
+            this.date = releasedDate;
+        }
+
         public String getReleasedYear() {
             return releasedYear;
         }
