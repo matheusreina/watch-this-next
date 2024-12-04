@@ -1,0 +1,40 @@
+@import "../../../../variables.scss";
+
+.card {
+  margin: 2rem 1.5rem;
+  position: relative;
+  width: 185px;
+  padding: 8px;
+  border-radius: 16px;
+  background-color: $bg-color-4;
+
+  .box-1 {
+    .poster {
+      a {
+        img {
+          width: 100%;
+          border-radius: 8px 8px 0 0;
+        }
+      }
+    }
+  }
+
+  .box-2 {
+    a {
+      .first-info {
+        width: 100%;
+        margin-top: 8px;
+        font-size: 1rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .second-info {
+        font-weight: 400;
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

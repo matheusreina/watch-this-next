@@ -1,0 +1,26 @@
+@import "./../../../../variables.scss";
+
+.recommendations {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+
+  .carousel-control {
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: $font-color;
+
+    &:hover {
+      background-color: $font-hover;
+    }
+
+    &:disabled:hover {
+      background-color: $font-color;
+      cursor: not-allowed;
+    }
+  }
+}

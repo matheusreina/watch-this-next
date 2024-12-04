@@ -45,6 +45,9 @@ public class RecommendationsResponse {
         private String releasedDate;
         private String releasedYear;
 
+        @JsonProperty("vote_average")
+        private String voteAverage;
+
 
         // Getters & Setters
         public String getId() {
@@ -85,7 +88,7 @@ public class RecommendationsResponse {
             return poster;
         }
         public void setPoster(String poster) {
-            this.poster = AppUtils.imageLinkFormatter(poster);
+            this.poster = AppUtils.dinamicImageLinkFormatter(poster, "185");
         }
 
         public String getDate() {
@@ -107,5 +110,12 @@ public class RecommendationsResponse {
         public void setReleasedYear(String releasedYear) {
         this.releasedYear = AppUtils.getReleaseYear(this.getDate());
     }
+
+        public String getVoteAverage() {
+            return voteAverage;
+        }
+        public void setVoteAverage(double voteAverage) {
+            this.voteAverage = AppUtils.voteAverageFormatter(voteAverage);
+        }
     }
 }

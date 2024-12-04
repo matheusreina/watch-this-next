@@ -10,6 +10,7 @@
         <img class="poster-image" src="{{ data.poster_path }}" />
       </button>
     </div>
+
     <div class="box-2">
       <div class="main-info">
         <h1 class="title">
@@ -29,13 +30,56 @@
         <span> {{ data.vote_average }} / 5.0 </span>
       </div>
       <div class="overview">
-        <h2>Overview</h2>
+        <h2>{{ overview }}</h2>
         <span>{{ data.overview }}</span>
       </div>
     </div>
   </div>
-  <div class="similar">
-    <app-similar-shows />
+
+  <div class="box-3">
+    <!-- Credits -->
+    <div class="section">
+      <h3 class="section-title">{{ sectionCredits }}</h3>
+      <div class="credits">
+        @for (item of data.credits.cast; track item.id; let idx = $index) { @if
+        (idx <= 6) {
+
+        <app-small-card
+          id="{{ item.id }}"
+          routerLink="{{ '/' + currentLang + '/person/' + item.id }}"
+          poster="{{ item.profile_path }}"
+          firstInfo="{{ item.name }}"
+          secondInfo="{{ item.character }}"
+        />
+        } }
+      </div>
+    </div>
+    <hr class="divider" />
+    <!-- Recommendations -->
+    <div class="section">
+      <h3 class="section-title">{{ sectionRecommendations }}</h3>
+      <app-carousel
+        (carouselStartEmitter)="carouselEventRecmmdStartHandler($event)"
+        (carouselEndEmitter)="carouselEventRecmmdEndHandler($event)"
+        [data]="data"
+        [carouselMaxIndex]="carouselRecmmdMaxIndex"
+      >
+        @for (item of (data.recommendations.results); track item.id; let idx =
+        $index) { @if (idx >= carouselRecmmdIndexStart && idx <=
+        carouselRecmmdIndexEnd ) {
+
+        <app-small-card
+          id="{{ item.id }}"
+          routerLink="{{
+            '/' + currentLang + '/' + item.media_type + '/' + item.id
+          }}"
+          poster="{{ item.poster_path }}"
+          firstInfo="{{ item.name }}"
+          secondInfo="{{ item.releasedYear }}"
+        />
+        } }
+      </app-carousel>
+    </div>
   </div>
   }
 </div>

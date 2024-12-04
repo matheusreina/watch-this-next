@@ -24,7 +24,7 @@ export class TvRequestsService {
     return this.http.get(`${this.apiUrl}${language}/tv/popular`);
   }
 
-  getTvDetails(id: string): Observable<any> {
+  getDetails(id: string): Observable<any> {
     const language = this.languageService.getLanguage();
     return this.http.get(`${this.apiUrl}${language}/tv/${id}`);
   }

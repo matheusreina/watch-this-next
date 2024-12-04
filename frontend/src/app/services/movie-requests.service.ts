@@ -24,7 +24,7 @@ export class MovieRequestsService {
     return this.http.get(`${this.apiUrl}${language}/movie/popular`);
   }
 
-  getMovieDetails(id: string): Observable<any> {
+  getDetails(id: string): Observable<any> {
     const language = this.languageService.getLanguage();
     return this.http.get(`${this.apiUrl}${language}/movie/${id}`);
   }
