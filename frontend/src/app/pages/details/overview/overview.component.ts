@@ -6,12 +6,13 @@ import { LanguageService } from '../../../services/language.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingComponent } from '../../../components/misc/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faL, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { CarouselComponent } from '../../../components/misc/carousel/carousel.component';
 import { Subject, takeUntil } from 'rxjs';
 import { SmallCardComponent } from '../../../components/card/small-card/small-card.component';
+import { MediaSectionComponent } from '../../../components/misc/media-section/media-section.component';
 
 @Component({
   selector: 'app-overview',
@@ -21,6 +22,7 @@ import { SmallCardComponent } from '../../../components/card/small-card/small-ca
     FontAwesomeModule,
     CarouselComponent,
     SmallCardComponent,
+    MediaSectionComponent,
   ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss',
@@ -42,6 +44,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
   carouselCreditsIndexStart: number = 0;
   carouselCreditsIndexEnd: number = 6;
 
+  // Media Section component id
+  mediaComponentId: string = 'videos';
+  videos: boolean = true;
+  posters: boolean = false;
+  backdrop: boolean = false;
+
   // FA Icon
   faStar = faStar;
   faArrowRight = faArrowRight;
@@ -51,6 +59,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   overview: string = '';
   sectionCredits: string = '';
   sectionRecommendations = '';
+  sectionPosters: string = '';
 
   getTexts() {
     this.overview = this.currentLang === 'en' ? 'Overview' : 'Descrição';
@@ -58,6 +67,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
       this.currentLang === 'en' ? 'Top Billed Cast' : 'Elenco Principal';
     this.sectionRecommendations =
       this.currentLang === 'en' ? 'Recommendations' : 'Recomendações';
+    this.sectionPosters = this.currentLang === 'en' ? 'Media' : 'Mídia';
   }
 
   constructor(
@@ -119,6 +129,30 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   redirectTo404() {}
+
+  // Media Component
+  toggleMediaComponent(mediaComponentId: string) {
+    switch (mediaComponentId) {
+      case 'videos':
+        this.videos = true;
+        this.posters = false;
+        this.backdrop = false;
+        break;
+      case 'posters':
+        this.videos = false;
+        this.posters = true;
+        this.backdrop = false;
+        break;
+      case 'backdrop':
+        this.videos = false;
+        this.posters = false;
+        this.backdrop = true;
+        break;
+
+      default:
+        break;
+    }
+  }
 
   // Carosel Event Emitters
   carouselEventRecmmdStartHandler(event: number) {

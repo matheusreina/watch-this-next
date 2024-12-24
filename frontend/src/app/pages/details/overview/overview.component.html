@@ -55,6 +55,44 @@
       </div>
     </div>
     <hr class="divider" />
+    <!-- Media -->
+    <div class="section">
+      <div class="media-title">
+        <h3 class="section-title">{{ sectionPosters }}</h3>
+        <div class="sub-navbar">
+          <ul class="sub-navbar-items">
+            <li class="items">
+              <button (click)="toggleMediaComponent('videos')">
+                {{ currentLang === "en" ? "Videos" : "Vídeos" }}
+              </button>
+            </li>
+            <li class="items">
+              <button (click)="toggleMediaComponent('posters')">
+                {{ currentLang === "en" ? "Posters" : "Pôsteres" }}
+              </button>
+            </li>
+            <li class="items">
+              <button (click)="toggleMediaComponent('backdrop')">
+                {{ currentLang === "en" ? "Backdrop" : "Imagens de Fundo" }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="media">
+        @if (videos) {
+        <app-media-section
+          mediaType="videos"
+          [videoResults]="data.videos.results"
+        />
+        } @else if (posters) {
+        <app-media-section mediaType="posters" />
+        } @else if (backdrop) {
+        <app-media-section mediaType="backdrop" />
+        }
+      </div>
+    </div>
+    <hr class="divider" />
     <!-- Recommendations -->
     <div class="section">
       <h3 class="section-title">{{ sectionRecommendations }}</h3>

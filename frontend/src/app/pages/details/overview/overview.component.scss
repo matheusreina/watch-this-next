@@ -95,6 +95,39 @@
         display: flex;
         justify-content: center;
       }
+
+      .media-title {
+        display: flex;
+        margin-bottom: 1rem;
+
+        .sub-navbar {
+          .sub-navbar-items {
+            display: flex;
+            align-items: end;
+            gap: 30px;
+            height: 100%;
+            list-style: none;
+            .items {
+              button {
+                font-size: 1rem;
+                cursor: pointer;
+                border-bottom: transparent 2px solid;
+              }
+
+              &:hover {
+                button {
+                  color: $salmon;
+                }
+              }
+
+              &:active {
+                color: $salmon;
+                border-bottom: $salmon 2px solid;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

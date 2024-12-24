@@ -1,0 +1,14 @@
+<div class="component">
+  @if (mediaType === 'videos') {
+  <div class="container">
+    @for (item of videoResults; track $index) {
+    <iframe width="560" [src]="item.key"></iframe>
+    <h1>{{ item.key }}</h1>
+    }
+  </div>
+  } @else if (mediaType === 'posters') {
+  <div class="container"></div>
+  } @else if (mediaType === 'backdrops') {
+  <div class="container"></div>
+  }
+</div>
